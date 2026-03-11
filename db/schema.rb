@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_10_211509) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_11_024055) do
   create_table "posts", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.string "description"
+    t.date "event_date"
+    t.string "event_title"
+    t.string "location"
     t.datetime "updated_at", null: false
+    t.string "username"
   end
 end
