@@ -6,6 +6,30 @@
 
 <br>
 
+<%= form_with model: @post do |form| %>
+  <div>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+  <div>
+    <%= form.label :event_title %>
+    <%= form.text_field :event_title %>
+  </div>
+  <div>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+  <div>
+    <%= form.label :event_date %>
+    <%= form.date_field :event_date %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
 <div>
   <%= link_to "Show this post", @post %> |
   <%= link_to "Back to posts", posts_path %>
