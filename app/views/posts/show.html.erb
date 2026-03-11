@@ -3,6 +3,12 @@
 <%= render @post %>
 
 <div>
+  <p>Username: <%= @post.username %></p>
+  <p>Title: <%= @post.event_title %></p>
+  <p>Location: <%= @post.location %></p>
+  <p>Event date: <%= @post.event_date %></p>
+  <p>Description: <%= @post.description %></p>
+
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>
 
