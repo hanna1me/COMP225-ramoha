@@ -1,0 +1,10 @@
+<%# Content %>
+    <main class="min-h-[screen] grow h-auto w-auto bg-white dark:bg-neutral-950 flex flex-col justify-center items-center relative">
+      <div class="w-full absolute top-0 z-10 flex items-center md:hidden p-2">
+        <button type="button" class="size-9 inline-flex items-center justify-center rounded-md focus:bg-neutral-100 focus:outline-hidden focus:ring-inset dark:focus:bg-neutral-700/50 active:opacity-50" data-action="click->sidebar#openMobile" aria-label="Open sidebar">
+          <span class="sr-only">Open sidebar</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="2.25" y1="9" x2="15.75" y2="9"></line><line x1="2.25" y1="3.75" x2="15.75" y2="3.75"></line><line x1="2.25" y1="14.25" x2="8.25" y2="14.25"></line></g></svg>
+        </button>
+      </div>
+      <% yield %>
+    </main>
