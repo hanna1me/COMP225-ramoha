@@ -41,11 +41,11 @@
 
   <body>
     <div class="container">
-    <div class="row">
-      <div class="col-sm-3 sidebar">
+    <div class="flex flex-row">
+      <div class="sidebar">
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
-      <div class="col-sm-9 content">
+      <div class="content">
         <%= yield %> <!-- page content -->
       </div>
     </div>  
