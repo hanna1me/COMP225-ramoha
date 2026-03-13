@@ -22,9 +22,9 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-    <!-- Shoelace -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/color-picker/color-picker.js"></script>
-    <link
+  <!-- Shoelace -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/color-picker/color-picker.js"></script>
+  <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css"/>
   <link
@@ -46,7 +46,8 @@
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
       <div class="content">
-        <%= yield %> <!-- page content -->
+        <%= yield %> 
+        <!-- page content -->
       </div>
     </div>  
   </body>
