@@ -1,6 +1,6 @@
 <!-- Note: You will likely need to replace all the min-h-[600px] with a min-h-screen -->
 
-<div class="flex h-full flex-col relative" data-controller="sidebar" data-sidebar-storage-key-value="basicSidebar">
+<div class="flex h-full flex-col relative w-1/3" data-controller="sidebar" data-sidebar-storage-key-value="basicSidebar">
   <!-- Mobile Sidebar Overlay -->
   <div class="absolute inset-0 z-50 md:hidden hidden" data-sidebar-target="mobileSidebar">
     <!-- Backdrop -->
@@ -17,7 +17,7 @@
     <div class="relative flex h-full flex-row">
       <details class="w-13 open:w-64 group/sidebar relative z-20 h-full shrink-0 overflow-hidden border-r border-neutral-200 bg-neutral-50 max-md:hidden motion-safe:transition-all motion-safe:duration-300 dark:border-neutral-800 dark:bg-neutral-900" data-sidebar-target="desktopSidebar">
         <!-- Tiny Sidebar (shown when closed) -->
-        <summary class="group-open/sidebar:hidden flex min-h-[600px] h-full cursor-e-resize list-none flex-col items-start pl-2 pr-1.5">
+        <summary class="group-open/sidebar:hidden flex min-h-screen h-full cursor-e-resize list-none flex-col items-start pl-2 pr-1.5">
           <div class="flex h-13 w-full items-center justify-start">
             <button class="cursor-e-resize flex size-10 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800" data-action="click->sidebar#open">
               <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="6.25" y1="2.75" x2="6.25" y2="15.25"></line><polyline points="10.25 6.5 12.75 9 10.25 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2" transform="translate(18 18) rotate(180)"></rect></g></svg>
@@ -60,7 +60,7 @@
         <div class="h-full w-64 overflow-x-clip overflow-y-auto bg-neutral-50 text-clip whitespace-nowrap dark:bg-neutral-900" data-sidebar-target="desktopContent">
           <!-- Shared Sidebar Content Template -->
           <template data-sidebar-target="contentTemplate">
-            <nav class="min-h-[600px] relative flex h-full w-full flex-1 flex-col overflow-y-auto select-none">
+            <nav class="min-h-screen relative flex h-full w-full flex-1 flex-col overflow-y-auto select-none">
             <div class="sticky top-0 z-30 bg-neutral-50 dark:bg-neutral-900">
               <div class="px-1.5 sm:px-2">
                 <div class="flex h-13 items-center justify-between">
