@@ -11,7 +11,7 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%# Enable PWA manifest for insatallable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
@@ -45,7 +45,7 @@
       <div class="sidebar">
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
-      <div class="content">
+      <div class="content w-2/3 m-[5%]">
         <%= yield %> 
         <!-- page content -->
       </div>

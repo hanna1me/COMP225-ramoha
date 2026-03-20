@@ -1,34 +1,30 @@
 <div id="<%= dom_id post %>">
-<div class="bg-white dark:bg-neutral-800 border border-black/10 dark:border-white/10 rounded-xl shadow-xs overflow-hidden">
-  <div class="bg-neutral-50 dark:bg-neutral-900/50 px-4 py-5 sm:px-6 border-b border-black/10 dark:border-white/10">
-    <h3 class="text-lg/6 text-neutral-900 dark:text-white">
-      @<%=post.username%>
-    </h3>
-    <h2 class="text-lg/6 font-medium text-neutral-900 dark:text-white">
-      <%=post.event_title%>
-    </h2>
-    <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-      <%=post.location%>
-    </p>
-    <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-      <%=post.event_date%>
-    </p>
-  </div>
-  <div class="px-4 py-5 sm:p-6">
-    <div class="text-neutral-700 dark:text-neutral-300">
-      <p class="mb-4"><%=post.description%></p>
+  <div class="bg-white dark:bg-neutral-800 border border-black/10 dark:border-white/10 rounded-xl shadow-xs overflow-hidden w-[100%]">
+    <div class="bg-neutral-50 dark:bg-neutral-900/50 px-4 py-5 sm:px-6 border-b border-black/10 dark:border-white/10">
+      <h3 class="text-lg/6 text-neutral-900 dark:text-white">
+        @<%=post.username%>
+      </h3>
+      <h2 class="text-lg/6 font-medium text-neutral-900 dark:text-white">
+        <%=post.event_title%>
+      </h2>
+      <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+        <%=post.location%>
+      </p>
+      <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+        <%=post.event_date%>
+      </p>
     </div>
-  </div>
-  <div class="bg-neutral-50 dark:bg-neutral-900/50 px-4 py-4 sm:px-6 border-t border-black/10 dark:border-white/10">
-    <div class="flex justify-between">
-      <button type="button" class="flex items-center justify-center gap-1.5 rounded-lg border border-black/10 bg-white/90 px-3.5 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 shadow-xs transition-all duration-100 ease-in-out select-none hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-neutral-700/50 dark:text-neutral-50 dark:hover:bg-neutral-700/75 dark:focus-visible:outline-neutral-200">
-        Cancel
-      </button>
-      <button type="button" class="flex items-center justify-center gap-1.5 rounded-lg border border-neutral-400/30 bg-neutral-800 px-3.5 py-2 text-sm font-medium whitespace-nowrap text-white shadow-sm transition-all duration-100 ease-in-out select-none hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-neutral-800 dark:hover:bg-neutral-100 dark:focus-visible:outline-neutral-200">
-        Save Changes
-      </button>
+    <div class="px-4 py-5 sm:p-6">
+      <div class="text-neutral-700 dark:text-neutral-300">
+        <p class="mb-4"><%=post.description%></p>
+      </div>
+    </div>
+    <div class="bg-neutral-50 dark:bg-neutral-900/50 px-4 py-4 sm:px-6 border-t border-black/10 dark:border-white/10">
+      <div class="flex justify-between">
+        <button type="button">
+          <%= link_to "Show this post", post, class: "flex items-center justify-center gap-1.5 rounded-lg border border-neutral-400/30 bg-neutral-800 px-3.5 py-2 text-sm font-medium whitespace-nowrap text-white shadow-sm transition-all duration-100 ease-in-out select-none hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-neutral-800 dark:hover:bg-neutral-100 dark:focus-visible:outline-neutral-200" %>
+        </button>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
