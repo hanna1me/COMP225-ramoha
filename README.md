@@ -10,6 +10,7 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+Install Tailwind and associated gems with `bundle install`. To run the updated CSS alongside the Rails server, enter `bin/dev` into the command line. 
 
 * Database creation
 
