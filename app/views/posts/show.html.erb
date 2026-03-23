@@ -1,16 +1,36 @@
 <p style="color: green"><%= notice %></p>
 
-<%# <%= render @post %>
 
-<div>
-  <p>Username: <%= @post.username %></p>
-  <p>Title: <%= @post.event_title %></p>
-  <p>Location: <%= @post.location %></p>
-  <p>Event date: <%= @post.event_date %></p>
-  <p>Description: <%= @post.description %></p>
+<div data-controller="scroll-area" data-scroll-area-target="root" data-action="mouseenter->scroll-area#onRootMouseEnter mouseleave->scroll-area#onRootMouseLeave" class="relative h-80 w-full rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-800">
+  <!-- Viewport -->
+  <div data-scroll-area-target="viewport" data-action="scroll->scroll-area#onViewportScroll" class="h-full overflow-auto scrollbar-hide scroll-fade-y pr-1">
+    <div class="flex flex-col gap-4 text-sm leading-relaxed text-neutral-900 dark:text-neutral-100">
+      <div>
+        <h3 class="text-lg/6 text-neutral-900 dark:text-white">@<%= @post.username %></h3>
+        <h2 class="text-lg/6 font-medium text-neutral-900 dark:text-white">
+        <%=@post.event_title%>
+      </h2>
+        <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+        <%=@post.location%>
+      </p>
+        <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+        <%=@post.event_date.strftime('%B %d, %Y')%>
+      </p>
+        <div class="px-4 py-5 sm:p-6">
+      <div class="text-neutral-700 dark:text-neutral-300">
+        <p class="mb-4"><%=@post.description%></p>
+      </div>
+    </div>
+        <%= link_to "Edit this post", edit_post_path(@post) %> |
+        <%= link_to "Back to posts", posts_path %>
+        <%= button_to "Destroy this post", @post, method: :delete %>
+      </div>
+    </div>
+  </div>
 
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-  <%= button_to "Destroy this post", @post, method: :delete %>
+  <!-- Vertical Scrollbar -->
+  <div data-scroll-area-target="scrollbar" data-scroll-area-orientation-value="vertical" data-action="click->scroll-area#onScrollbarClick" class="absolute right-2 top-2 bottom-2 flex w-1.5 justify-center rounded-full bg-black/5 backdrop-blur-sm opacity-0 transition-opacity duration-150 delay-300 pointer-events-none data-[hovering]:opacity-100 data-[hovering]:duration-100 data-[hovering]:delay-0 data-[hovering]:pointer-events-auto data-[scrolling]:opacity-100 data-[scrolling]:duration-100 data-[scrolling]:delay-0 data-[scrolling]:pointer-events-auto data-[visible=false]:hidden dark:bg-white/10">
+    <!-- Thumb -->
+    <div data-scroll-area-target="thumb" data-action="mousedown->scroll-area#onThumbMouseDown" class="relative w-full rounded-full bg-neutral-500 transition-opacity duration-100 dark:bg-neutral-400"></div>
+  </div>
 </div>
