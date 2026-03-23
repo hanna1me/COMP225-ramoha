@@ -11,7 +11,7 @@
         <%=post.location%>
       </p>
       <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-        <%=post.event_date%>
+        <%=post.event_date.strftime('%B %d, %Y')%>
       </p>
     </div>
     <div class="px-4 py-5 sm:p-6">

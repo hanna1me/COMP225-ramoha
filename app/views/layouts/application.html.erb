@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title><%= content_for(:title) || "Comp225 Ramoha" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -39,16 +39,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe/dist/photoswipe.css">
   </head>
 
-  <body>
-    <div class="container">
-    <div class="flex flex-row">
-      <div class="sidebar">
+  <body class="h-screen overflow-hidden bg-neutral-50 dark:bg-neutral-900">
+    <div class="flex h-full w-full">
+      <div class="sidebar shrink-0 h-full">
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
-      <div class="content w-2/3 m-[5%]">
+      <main class="flex-1 h-full overflow-y-auto p-[5%]">
         <%= yield %> 
         <!-- page content -->
-      </div>
+      </main>
     </div>  
   </body>
 </html>
