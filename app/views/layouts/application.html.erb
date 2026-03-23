@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title><%= content_for(:title) || "Comp225 Ramoha" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,7 +11,7 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%# Enable PWA manifest for insatallable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
@@ -22,9 +22,9 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-    <!-- Shoelace -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/color-picker/color-picker.js"></script>
-    <link
+  <!-- Shoelace -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/color-picker/color-picker.js"></script>
+  <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css"/>
   <link
@@ -39,15 +39,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe/dist/photoswipe.css">
   </head>
 
-  <body>
-    <div class="container">
-    <div class="flex flex-row">
-      <div class="sidebar">
+  <body class="h-screen overflow-hidden bg-neutral-50 dark:bg-neutral-900">
+    <div class="flex h-full w-full">
+      <div class="sidebar shrink-0 h-full">
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
-      <div class="content">
-        <%= yield %> <!-- page content -->
-      </div>
+      <main class="flex-1 h-full overflow-y-auto p-[5%]">
+        <%= yield %> 
+        <!-- page content -->
+      </main>
     </div>  
   </body>
 </html>

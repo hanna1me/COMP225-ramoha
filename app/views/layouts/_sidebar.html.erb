@@ -1,6 +1,6 @@
 <!-- Note: You will likely need to replace all the min-h-[600px] with a min-h-screen -->
 
-<div class="flex h-full flex-col relative w-1/3" data-controller="sidebar" data-sidebar-storage-key-value="basicSidebar">
+<div class="flex h-screen flex-col relative overflow-hidden" data-controller="sidebar" data-sidebar-storage-key-value="basicSidebar">
   <!-- Mobile Sidebar Overlay -->
   <div class="absolute inset-0 z-50 md:hidden hidden" data-sidebar-target="mobileSidebar">
     <!-- Backdrop -->
@@ -17,136 +17,87 @@
     <div class="relative flex h-full flex-row">
       <details class="w-13 open:w-64 group/sidebar relative z-20 h-full shrink-0 overflow-hidden border-r border-neutral-200 bg-neutral-50 max-md:hidden motion-safe:transition-all motion-safe:duration-300 dark:border-neutral-800 dark:bg-neutral-900" data-sidebar-target="desktopSidebar">
         <!-- Tiny Sidebar (shown when closed) -->
-        <summary class="group-open/sidebar:hidden flex min-h-screen h-full cursor-e-resize list-none flex-col items-start pl-2 pr-1.5">
-          <div class="flex h-13 w-full items-center justify-start">
+        <summary class="group-open/sidebar:hidden flex h-full cursor-e-resize list-none flex-col items-center py-3">
+          <div class="flex h-13 w-full items-center justify-start px-2">
             <button class="cursor-e-resize flex size-10 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800" data-action="click->sidebar#open">
-              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="6.25" y1="2.75" x2="6.25" y2="15.25"></line><polyline points="10.25 6.5 12.75 9 10.25 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2" transform="translate(18 18) rotate(180)"></rect></g></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-8" width="32" height="32" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="6.25" y1="2.75" x2="6.25" y2="15.25"></line><polyline points="10.25 6.5 12.75 9 10.25 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2" transform="translate(18 18) rotate(180)"></rect></g></svg>
             </button>
           </div>
 
-          <div class="mt-1.5 sm:mt-2 flex w-full flex-col items-start">
+          <div class="mt-8 flex flex-col items-center gap-4">
             <%# Home %>
-            <a href="javascript:void(0)" aria-label="Home" data-controller="tooltip" data-tooltip-content="Home" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
-              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M14.855 5.95L9.605 1.96C9.247 1.688 8.752 1.688 8.395 1.96L3.145 5.95C2.896 6.139 2.75 6.434 2.75 6.747V14.251C2.75 15.356 3.645 16.251 4.75 16.251H7.25V12.251C7.25 11.699 7.698 11.251 8.25 11.251H9.75C10.302 11.251 10.75 11.699 10.75 12.251V16.251H13.25C14.355 16.251 15.25 15.356 15.25 14.251V6.746C15.25 6.433 15.104 6.14 14.855 5.95Z"></path></g></svg>
+            <a href="javascript:void(0)" aria-label="Home" data-controller="tooltip" data-tooltip-content="Home" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M14.855 5.95L9.605 1.96C9.247 1.688 8.752 1.688 8.395 1.96L3.145 5.95C2.896 6.139 2.75 6.434 2.75 6.747V14.251C2.75 15.356 3.645 16.251 4.75 16.251H7.25V12.251C7.25 11.699 7.698 11.251 8.25 11.251H9.75C10.302 11.251 10.75 11.699 10.75 12.251V16.251H13.25C14.355 16.251 15.25 15.356 15.25 14.251V6.746C15.25 6.433 15.104 6.14 14.855 5.95Z"></path></g></svg>
             </a>
 
             <%# Profile %>
-            <a href="javascript:void(0)" aria-label="Profile" data-controller="tooltip" data-tooltip-content="Profile" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
-              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><circle cx="9" cy="4.5" r="2.75"></circle><path d="M13.762,15.516c.86-.271,1.312-1.221,.947-2.045-.97-2.191-3.159-3.721-5.709-3.721s-4.739,1.53-5.709,3.721c-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734s3.537-.348,4.762-.734Z"></path></g></svg>
+            <a href="javascript:void(0)" aria-label="Profile" data-controller="tooltip" data-tooltip-content="Profile" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><circle cx="9" cy="4.5" r="2.75"></circle><path d="M13.762,15.516c.86-.271,1.312-1.221,.947-2.045-.97-2.191-3.159-3.721-5.709-3.721s-4.739,1.53-5.709,3.721c-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734s3.537-.348,4.762-.734Z"></path></g></svg>
             </a>
 
             <%# Events %>
-            <a href="javascript:void(0)" aria-label="Events" data-controller="tooltip" data-tooltip-content="Events" data-tooltip-placement-value="right" data-tooltip-arrow="true" data-tooltip-animation-value="fade origin" data-tooltip-size-value="small" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 dark:text-neutral-100 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
-              <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="5.75" y1="2.75" x2="5.75" y2=".75"></line><line x1="12.25" y1="2.75" x2="12.25" y2=".75"></line><rect x="2.25" y="2.75" width="13.5" height="12.5" rx="2" ry="2"></rect><line x1="2.25" y1="6.25" x2="15.75" y2="6.25"></line></g></svg>
+            <a href="javascript:void(0)" aria-label="Events" data-controller="tooltip" data-tooltip-content="Events" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="5.75" y1="2.75" x2="5.75" y2=".75"></line><line x1="12.25" y1="2.75" x2="12.25" y2=".75"></line><rect x="2.25" y="2.75" width="13.5" height="12.5" rx="2" ry="2"></rect><line x1="2.25" y1="6.25" x2="15.75" y2="6.25"></line></g></svg>
             </a>
           </div>
 
           <div class="flex-grow"></div>
 
-
-          <div class="sticky bottom-0 z-30 bg-neutral-50 py-1.5 empty:hidden sm:py-2 dark:bg-neutral-900">
-            <button class="w-full flex items-center gap-2 rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
-              <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
-                <div class="flex size-6 shrink-0 overflow-hidden rounded-md bg-neutral-500/30">
-                  <img alt="Profile image" class="size-6 shrink-0 object-cover" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&amp;h=100&amp;fit=crop">
-                </div>
-              </div>
+          <%# Sign out (closed sidebar) %>
+          <div class="flex flex-col items-center gap-4 mb-4 shrink-0 bg-neutral-50 py-1.5 dark:bg-neutral-900">
+            <button class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
             </button>
           </div>
         </summary>
 
-        
+ 
         <!-- Full Sidebar (shown when open) -->
-        <div class="h-full w-64 overflow-x-clip overflow-y-auto bg-neutral-50 text-clip whitespace-nowrap dark:bg-neutral-900" data-sidebar-target="desktopContent">
+        <div class="h-full w-64 bg-neutral-50 dark:bg-neutral-900" data-sidebar-target="desktopContent">
           <!-- Shared Sidebar Content Template -->
           <template data-sidebar-target="contentTemplate">
-            <nav class="min-h-screen relative flex h-full w-full flex-1 flex-col overflow-y-auto select-none">
-            <div class="sticky top-0 z-30 bg-neutral-50 dark:bg-neutral-900">
-              <div class="px-1.5 sm:px-2">
-                <div class="flex h-13 items-center justify-between">
-                  <a href="javascript:void(0)" aria-label="Home" class="flex size-10 items-center justify-center rounded-lg text-neutral-900 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 9C1 4.58168 4.58179 1 9 1C13.4182 1 17 4.58168 17 9C17 13.4183 13.4182 17 9 17C4.58179 17 1 13.4183 1 9Z" fill-opacity="0.4"></path></g></svg>
-                  </a>
-                  <div class="flex">
-                    <button class="flex size-10 cursor-w-resize items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus:outline-none focus-visible:bg-neutral-100 disabled:opacity-50 sm:size-9 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 focus-visible:dark:bg-neutral-800" aria-expanded="true" aria-label="Close sidebar" data-state="closed" data-action="click->sidebar#close">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="11.75" y1="2.75" x2="11.75" y2="15.25"></line><polyline points="7.75 6.5 5.25 9 7.75 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2"></rect></g></svg>
-                    </button>
-                  </div>
-                </div>
+            <nav class="h-full box-border flex flex-col p-4 select-none">
+              <div class="flex h-13 items-center justify-between mb-8 shrink-0">
+                <button class="flex size-10 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800" data-action="click->sidebar#close">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="11.75" y1="2.75" x2="11.75" y2="15.25"></line><polyline points="7.75 6.5 5.25 9 7.75 11.5"></polyline><rect x="1.75" y="2.75" width="14.5" height="12.5" rx="2" ry="2"></rect></g></svg>
+                </button>
               </div>
-            </div>
 
-            <aside class="relative bg-neutral-50 p-1.5 last:mb-5 sm:p-2 dark:bg-neutral-900">
-              <a href="javascript:void(0)" aria-label="Home" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
-                <div class="flex min-w-0 items-center gap-1.5">
-                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M14.855 5.95L9.605 1.96C9.247 1.688 8.752 1.688 8.395 1.96L3.145 5.95C2.896 6.139 2.75 6.434 2.75 6.747V14.251C2.75 15.356 3.645 16.251 4.75 16.251H7.25V12.251C7.25 11.699 7.698 11.251 8.25 11.251H9.75C10.302 11.251 10.75 11.699 10.75 12.251V16.251H13.25C14.355 16.251 15.25 15.356 15.25 14.251V6.746C15.25 6.433 15.104 6.14 14.855 5.95Z"></path></g></svg>
-                  </div>
-                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
-                    <div class="truncate">Home</div>
-                  </div>
+              <%# Pfp info %>
+              <div class="flex flex-col items-center text-center mb-10 shrink-0">
+                <div class="size-48 rounded-full mb-4 overflow-hidden">
+                  <img alt="Profile" class="object-cover size-full" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&h=400&fit=crop">
                 </div>
-                <div class="text-neutral-500 dark:text-neutral-400">
-                  <div class="hidden sm:block">
-                    <div class="hidden ml-auto group-hover:flex text-xs">
-                      ⌘1
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="javascript:void(0)" aria-label="Profile" title="Profile" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
-                <div class="flex min-w-0 items-center gap-1.5">
-                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><circle cx="9" cy="4.5" r="2.75"></circle><path d="M13.762,15.516c.86-.271,1.312-1.221,.947-2.045-.97-2.191-3.159-3.721-5.709-3.721s-4.739,1.53-5.709,3.721c-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734s3.537-.348,4.762-.734Z"></path></g></svg>
-                  </div>
-                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
-                    <div class="truncate">Profile</div>
-                  </div>
-                </div>
-                <div class="text-neutral-500 dark:text-neutral-400">
-                  <div class="hidden sm:block">
-                    <div class="hidden ml-auto group-hover:flex text-xs">
-                      ⌘2
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="javascript:void(0)" aria-label="Events" class="group w-full flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
-                <div class="flex min-w-0 items-center gap-1.5">
-                  <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 sm:size-4.5" width="18" height="18" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><line x1="5.75" y1="2.75" x2="5.75" y2=".75"></line><line x1="12.25" y1="2.75" x2="12.25" y2=".75"></line><rect x="2.25" y="2.75" width="13.5" height="12.5" rx="2" ry="2"></rect><line x1="2.25" y1="6.25" x2="15.75" y2="6.25"></line></g></svg>
-                  </div>
-                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
-                    <div class="truncate">Events</div>
-                  </div>
-                </div>
-                <div class="text-neutral-500 dark:text-neutral-400">
-                  <div class="hidden sm:block">
-                    <div class="hidden ml-auto group-hover:flex text-xs">
-                      ⌘6
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </aside>
+                <h3 class="text-lg font-medium text-neutral-800 dark:text-neutral-100">John Doe</h3>
+              </div>
+            
+              <%# Navigation %>
+              <aside class="flex flex-col gap-1 overflow-y-auto">
+                <a href="javascript:void(0)" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                  <span>Dashboard</span>
+                </a>
+                <a href="javascript:void(0)" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                  <span>Profile</span>
+                </a>
+                <a href="javascript:void(0)" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <span>Events</span>
+                </a>
+              </aside>
 
-            <div class="grow"></div>
+              <div class="grow"></div>
 
-            <div class="sticky bottom-0 z-30 bg-neutral-50 p-1.5 empty:hidden sm:p-2 dark:bg-neutral-900">
-              <button class="w-full flex items-center gap-2 rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 text-left text-sm text-neutral-700 hover:bg-neutral-100 focus-visible:bg-neutral-100 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-100 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-neutral-700/50">
-                <div class="flex items-center justify-center group-disabled:opacity-50 group-data-disabled:opacity-50">
-                  <div class="flex size-6 shrink-0 overflow-hidden rounded-md bg-neutral-500/30">
-                    <img alt="Profile image" class="size-6 shrink-0 object-cover" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop">
-                  </div>
-                </div>
-                <div class="min-w-0">
-                  <div class="flex min-w-0 grow items-center gap-2.5 group-data-no-contents-gap:gap-0">
-                    <div class="truncate text-xs">John Doe</div>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </nav>
+              <%# Sign Out %>
+              <%# TODO: have it align w bottom. %>
+              <div class="pt-4 border-t border-neutral-200 dark:border-neutral-800 shrink-0 sticky bottom-0">
+                <button class="w-full flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all text-sm font-normal">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            </nav>
           </template>
         </div>
       </details>
