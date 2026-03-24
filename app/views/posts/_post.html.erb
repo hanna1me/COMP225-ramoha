@@ -11,7 +11,13 @@
         <%=post.location%>
       </p>
       <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-        <%=post.event_date.strftime('%B %d, %Y')%>
+        <%= 
+        if post.event_date != nil
+          post.event_date.strftime('%B %d, %Y')
+        else
+          post.event_date
+        end
+        %>
       </p>
     </div>
     <div class="px-4 py-5 sm:p-6">
