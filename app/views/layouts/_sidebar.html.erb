@@ -26,7 +26,7 @@
 
           <div class="mt-8 flex flex-col items-center gap-4">
             <%# Home %>
-            <a href="javascript:void(0)" aria-label="Home" data-controller="tooltip" data-tooltip-content="Home" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800">
+            <a href= "<%=posts_path%>" aria-label="Home" data-controller="tooltip" data-tooltip-content="Home" class="flex h-8 w-8.5 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800">
               <svg xmlns="http://www.w3.org/2000/svg" class="size-8" viewBox="0 0 18 18"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor"><path d="M14.855 5.95L9.605 1.96C9.247 1.688 8.752 1.688 8.395 1.96L3.145 5.95C2.896 6.139 2.75 6.434 2.75 6.747V14.251C2.75 15.356 3.645 16.251 4.75 16.251H7.25V12.251C7.25 11.699 7.698 11.251 8.25 11.251H9.75C10.302 11.251 10.75 11.699 10.75 12.251V16.251H13.25C14.355 16.251 15.25 15.356 15.25 14.251V6.746C15.25 6.433 15.104 6.14 14.855 5.95Z"></path></g></svg>
             </a>
 
@@ -73,9 +73,9 @@
             
               <%# Navigation %>
               <aside class="flex flex-col gap-1 overflow-y-auto">
-                <a href="javascript:void(0)" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 transition-all">
+                <a href="<%=posts_path%>" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-                  <span>Dashboard</span>
+                  <span>Home</span>
                 </a>
                 <a href="javascript:void(0)" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
