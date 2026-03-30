@@ -6,7 +6,7 @@
   <div data-scroll-area-target="viewport" data-action="scroll->scroll-area#onViewportScroll" class="h-full overflow-auto scrollbar-hide scroll-fade-y pr-1">
     <div class="flex flex-col gap-4 text-sm leading-relaxed text-neutral-900 dark:text-neutral-100">
       <div>
-        <h3 class="text-lg/6 text-neutral-900 dark:text-white">@<%= @post.username %></h3>
+        <h3 class="text-lg/6 text-neutral-900 dark:text-white">@<%= @post.user.username %></h3>
         <h2 class="text-lg/6 font-medium text-neutral-900 dark:text-white">
         <%=@post.event_title%>
       </h2>
