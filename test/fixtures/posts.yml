@@ -4,8 +4,8 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: 
-  username: "Test Name"
+test_event: 
+  user: "john_doe"
   event_title: "Test Event"
   location: "Test Location"
   event_date: 31-12-2010
