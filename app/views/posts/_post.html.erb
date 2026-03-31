@@ -1,36 +1,46 @@
 <div id="<%= dom_id post %>">
-  <div class="bg-white dark:bg-neutral-800 border border-black/10 dark:border-white/10 rounded-xl shadow-xs overflow-hidden w-[100%]">
-    <div class="bg-neutral-50 dark:bg-neutral-900/50 px-4 py-5 sm:px-6 border-b border-black/10 dark:border-white/10">
-      <h3 class="text-lg/6 text-neutral-900 dark:text-white">
-        @<%=post.user.username%>
-      </h3>
-      <h2 class="text-lg/6 font-medium text-neutral-900 dark:text-white">
-        Title: <%=post.event_title%>
-      </h2>
-      <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-        Location: <%=post.location%>
-      </p>
-      <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-        <%= 
-        if post.event_date != nil
-          post.event_date.strftime('%B %d, %Y')
-        else
-          post.event_date
-        end
-        %>
-      </p>
-    </div>
-    <div class="px-4 py-5 sm:p-6">
-      <div class="text-neutral-700 dark:text-neutral-300">
-        <p class="mb-4"><%=post.description%></p>
-      </div>
-    </div>
-    <div class="bg-neutral-50 dark:bg-neutral-900/50 px-4 py-4 sm:px-6 border-t border-black/10 dark:border-white/10">
-      <div class="flex justify-between">
-        <button type="button">
-          <%= link_to "Show this post", post, class: "flex items-center justify-center gap-1.5 rounded-lg border border-neutral-400/30 bg-neutral-800 px-3.5 py-2 text-sm font-medium whitespace-nowrap text-white shadow-sm transition-all duration-100 ease-in-out select-none hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-neutral-800 dark:hover:bg-neutral-100 dark:focus-visible:outline-neutral-200" %>
+  <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
+    <div class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900/50 border-t border-black/10 dark:border-white/10">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
+          <div class="ml-3">
+            <p class="text-md font-medium text-neutral-900 dark:text-white">@<%=post.user.username%></p>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">
+              <%=if post.event_date != nil
+                  post.event_date.strftime('%B %d, %Y')
+                else
+                  post.event_date
+                end%>
+            </p>
+          </div>
+        </div>
+        <button type="button" class="text-neutral-400 hover:text-neutral-500">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+          </svg>
         </button>
       </div>
+    </div>
+    <div class="px-6 py-4">
+      <h3 class="text-2xl font-semibold text-neutral-900 dark:text-white mb-2">
+        <%=post.user.username%> is hosting: <%=post.event_title%>
+      </h3>
+      <h4 class="text-xl font-medium text-neutral-900 dark:text-white mb-6 !font-[Bricolage_Grotesque]">
+        <div class = "italic"> at <%=post.location%></div>
+      </h4>
+      <p class="text-neutral-700 dark:text-neutral-300 text-md mb-6">
+        <%=post.description%>
+      </p>
+
+      <div class="px-4 py-4 sm:px-6">
+      <div class="flex justify-end">
+          <button type="button">
+              <%= link_to "Show this post", post, class:"justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200"%>
+        </button>
+        </a>
+      </div>
+    </div>
     </div>
   </div>
 </div>
