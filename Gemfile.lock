@@ -168,6 +168,7 @@ GEM
       zeitwerk (>= 2.6.18, < 3.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
+    local_time (3.0.3)
     logger (1.7.0)
     loofah (2.25.0)
       crass (~> 1.0.2)
@@ -434,6 +435,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  local_time
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

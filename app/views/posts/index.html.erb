@@ -1,13 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Posts" %>
 
-<h1 class="!font-[Bricolage_Grotesque] font-normal mb-[30px]">Looking for an upcoming event?</h1>
+<div class="max-w-2xl mx-auto w-full">
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%# <%= render('posts/post', post: post) %>
-    <%= render post%>
-    <br>
+  <% if notice.present? %>
+    <div class="mb-6 flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 dark:border-green-900/30 dark:bg-green-950/20 dark:text-green-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      <%= notice %>
+    </div>
   <% end %>
+
+  <header class="mb-10 text-center">
+    <h1 class="text-4xl !font-[Bricolage_Grotesque] font-semibold text-neutral-900 dark:text-white tracking-tight">
+      Looking for an upcoming event?
+    </h1>
+    <p class="text-neutral-500 mt-2">Discover what's happening in your community</p>
+  </header>
+
+  <div id="posts" class="space-y-8">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
 </div>
