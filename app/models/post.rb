@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
     belongs_to :user
-    has_many :requrements
+    has_many :requirements
 end
