@@ -44,9 +44,16 @@
       <div class="sidebar shrink-0 h-full w-64">
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
-      <main class="flex-1 h-full overflow-y-auto p-[5%]">
-        <%= yield %> 
-        <!-- page content -->
+      <main class="flex-1 h-full overflow-y-auto">
+        <div class="relative h-48 w-full overflow-hidden shadow-sm border border-black/5 dark:border-white/5"> 
+          <%= image_tag "home-banner2.png", class: "h-full w-full object-cover" %>  
+          <%# banners from doodleipsum: https://doodleipsum.com/ %>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        <div class = "p-[3%] flex-1 items-center justify-between">
+          <!-- page content -->
+          <%= yield %> 
+        </div>
       </main>
     </div>  
   </body>
