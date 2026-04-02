@@ -1245,7 +1245,15 @@ em-emoji-picker {
   --toast-transform: translateY(0);
 }
 
+turbo-frame#posts[busy] {
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
 
+turbo-frame#posts {
+  transition: opacity 0.3s ease-in-out;
+}
 
 body {
   font-family: 'Bricolage Grotesque', sans-serif;
