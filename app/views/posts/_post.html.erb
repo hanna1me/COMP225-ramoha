@@ -1,52 +1,67 @@
 <div id="<%= dom_id post %>">
-  <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
-    <div class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900/50 border-t border-black/10 dark:border-white/10">
+  <div class="bg-[var(--post-background)] rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
+
+    <%# Header %>
+    <div class="px-6 py-4 bg-[var(--brand-black)] font-[Unbounded] border-t border-black/10 dark:border-white/10">
       <div class="flex items-center justify-between">
-        <div class="flex items-center">
+        <%# left of header %>
+        <div class="flex items-center text-[var(--post-background)]">
           <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
           <div class="ml-3">
-            <p class="text-md font-medium text-neutral-900 dark:text-white">@<%=post.user.username%></p>
-            <p class="text-sm text-neutral-500 dark:text-neutral-400">
-              <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
+            <p class="text-md font-semibold text-[var(--post-background)]">@<%=post.user.username%></p>
+            <p class="text-sm font-medium text-[var(--post-background)]">
+              <%# <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
+              <%= post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
             </p>
           </div>
         </div>
-        <%# Share button %>
-        <button type="button" class="text-neutral-400 hover:text-neutral-500" data-controller="clipboard"
-        data-clipboard-text="<%= post_url(post) %>"
-        data-clipboard-success-message-value="Post link copied!"
-        data-clipboard-show-tooltip-value="true">
-          <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-          </svg>
-        </button>
+
+        <%# right of header %>
+        <div class = "flex items-center space-x-4">
+           <%# Event countdown %>
+            <p class="bg-[var(--brand-orange)] text-[var(--post-background)] text-lg px-2 rounded-lg justify-end">
+                  <%= event_countdown_text(post.event_date)%>
+                </p>
+            <%# Share button %>
+            <button type="button" class="text-[var(--post-background)]" data-controller="clipboard"
+            data-clipboard-text="<%= post_url(post) %>"
+            data-clipboard-success-message-value="Post link copied!"
+            data-clipboard-show-tooltip-value="true">
+              <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+              </svg>
+            </button>
+        </div>
       </div>
     </div>
+
+    <%# Main content %>
     <div class="px-6 py-4">
-      <h3 class="text-2xl font-semibold text-neutral-900 dark:text-white mb-2 break-words">
-        <%=post.user.username%> is hosting: <%=post.event_title%>
+      <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white my-2 break-words">
+        <%=post.user.username%> is hosting: <span class="bg-[var(--brand-green)]"><%=post.event_title%></span>
       </h3>
-      <h4 class="text-xl font-medium text-neutral-900 dark:text-white mb-2 !font-[Bricolage_Grotesque] break-words">
-        <div class = ""> at <%=post.location%></div>
-      </h4>
-      <h5 class="mb-6">on <%=if post.event_date != nil
+       <h4 class="text-[var(--brand-details)] mb-2">on <%=if post.event_date != nil
                   post.event_date.strftime('%B %d, %Y')
                 else
                   post.event_date
-                end%></h5>
-      <p class="text-neutral-700 dark:text-neutral-300 text-md mb-6 break-words whitespace-pre-line">
-        <%# 250 char limit %>
-        <%= truncate(post.description, length: 250, separator: ' ') %>
+                end%></h4>
+      <h4 class="text-lg font-normal text-[var(--post-details)] dark:text-white break-words !font-[Bricolage_Grotesque]">
+        at <span class = "italic"><%=post.location%></span>
+      </h4>
+     
+      <p class="text-[var(--brand-black)] dark:text-neutral-300 text-md mb-2 break-words whitespace-pre-line">
+        <%# 150 char limit %>
+        <%= truncate(post.description, length: 150, separator: ' ') %>
       </p>
 
       <div class="px-4 py-4 sm:px-6">
       <div class="flex justify-end">
-        <button type="button" class="justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200">
+        <button type="button" class="justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-[var(--brand-green)] hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200">
           I'm interested!
         </button>
 
           <button type="button">
-              <%= link_to "See full details", post, class:"justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200"%>
+              <%= link_to "See full details", post, class:"justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-[var(--brand-green)] hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200"%>
         </button>
         </a>
       </div>

@@ -10,45 +10,61 @@
     </div>
   <% end %>
 
-  <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl h-full flex flex-col">
-    <div class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900/50 border-t border-black/10 dark:border-white/10">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
-            <div class="ml-3">
-              <p class="text-md font-medium text-neutral-900 dark:text-white">@<%=@post.user.username%></p>
-              <p class="text-sm text-neutral-500 dark:text-neutral-400">
-                <%= local_time(@post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
-              </p>
-            </div>
+  <div class="bg-[var(--post-background)] rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
+  <%# Header %>
+    <div class="px-6 py-4 bg-[var(--brand-black)] font-[Unbounded] border-t border-black/10 dark:border-white/10">
+      <div class="flex items-center justify-between">
+        <%# left of header %>
+        <div class="flex items-center text-[var(--post-background)]">
+          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
+          <div class="ml-3">
+            <p class="text-md font-semibold text-[var(--post-background)]">@<%=@post.user.username%></p>
+            <p class="text-sm font-medium text-[var(--post-background)]">
+              <%= @post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
+            </p>
           </div>
-          <button type="button" class="text-neutral-400 hover:text-neutral-500">
-            <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-            </svg>
-          </button>
+        </div>
+
+        <%# right of header %>
+        <div class = "flex items-center space-x-4">
+           <%# Event countdown %>
+            <p class="bg-[var(--brand-orange)] text-[var(--post-background)] text-lg px-2 rounded-lg justify-end">
+                  <%= event_countdown_text(@post.event_date)%>
+                </p>
+            <%# Share button %>
+            <button type="button" class="text-[var(--post-background)]" data-controller="clipboard"
+            data-clipboard-text="<%= post_url(@post) %>"
+            data-clipboard-success-message-value="Post link copied!"
+            data-clipboard-show-tooltip-value="true">
+              <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+              </svg>
+            </button>
         </div>
       </div>
-      <div class="px-6 py-4 flex-grow flex flex-col">
-        <h3 class="text-2xl font-semibold text-neutral-900 dark:text-white mb-2 break-words">
-          <%=@post.user.username%> is hosting: <%=@post.event_title%>
-        </h3>
-        <h4 class="text-xl font-medium text-neutral-900 dark:text-white mb-2 !font-[Bricolage_Grotesque] break-words">
-          <div class = "italic"> at <%=@post.location%></div>
-        </h4>
-        <h5 class="mb-6">on <%=if @post.event_date != nil
-                    @post.event_date.strftime('%B %d, %Y')
-                  else
-                    @post.event_date
-                  end%></h5>
-        <p class="text-neutral-700 dark:text-neutral-300 text-md mb-6 break-words whitespace-pre-line">
-          <%=@post.description%>
-        </p>
+    </div>
 
-        <div class="flex flex-grow"></div>
 
+    <%# Main content %>
+    <div class="px-6 py-4">
+      <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white my-2 break-words">
+        <%=@post.user.username%> is hosting: <span class="bg-[var(--brand-green)]"><%=@post.event_title%></span>
+      </h3>
+      <h4 class="text-lg font-normal text-[var(--post-details)] dark:text-white mb-2 break-words !font-[Bricolage_Grotesque]">
+        at <span class = "italic"><%=@post.location%></span>
+      </h4>
+      <h5 class="text-[var(--post-details)]  ">on <%=if @post.event_date != nil
+                  @post.event_date.strftime('%B %d, %Y')
+                else
+                  @post.event_date
+                end%></h5>
+      <p class="text-[var(--brand-black)] dark:text-neutral-300 text-lg mb-2 break-words whitespace-pre-line">
+        <%= @post.description%>
+      </p>
+
+      <div class="px-4 py-4 sm:px-6">
         <%# Delete and Edit %>
-        <div class="flex items-end justify-between pt-6 border-t border-black/5 dark:border-white/5">
+        <div class="flex items-end justify-between pt-6 border-t border-[var(--grey-subtitle)] dark:border-white/5">
         <div class="flex gap-2">
           <%= link_to edit_post_path(@post), class: "px-4 py-2 text-sm font-semibold rounded-lg bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:text-neutral-200 dark:hover:bg-neutral-700 transition-all" do %>
             Edit Event
@@ -57,11 +73,11 @@
         
         <%= button_to @post, method: :delete, 
             form: { data: { confirm: "Are you sure?" } },
-            class: "px-4 py-2 text-sm font-semibold rounded-lg text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30 transition-all" do %>
+            class: "px-4 py-2 text-sm font-semibold rounded-lg text-[var(--brand-orange)] hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30 transition-all" do %>
           Delete
         <% end %>
       </div>
       </div>
     </div>
+    </div>
   </div>
-</div>
