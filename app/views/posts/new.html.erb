@@ -1,7 +1,7 @@
 <% content_for :title, "New Event" %>
 
 <div class="w-full flex flex-col items-center">
-  <h1 class="text-4xl !font-[Bricolage_Grotesque] font-light italic bg-[var(--brand-green)] px- text-neutral-900 dark:text-white tracking-tight justify-start">New event incoming!</h1>
+  <h1 class="text-4xl !font-[Bricolage_Grotesque] font-light italic bg-[var(--brand-green)] px-2 text-neutral-900 dark:text-white tracking-tight justify-start">New event incoming!</h1>
 
   <%# <%= render "form", post: @post %> 
   <br>
@@ -26,7 +26,7 @@
       <%= form.text_area :description, class: "form-control min-h-24", placeholder: "Tell us about your event..." %>
     </div>
 
-    <div class="mt-8 flex justify-center w-full">
+    <div class="mt-6 flex justify-center w-full">
       <%= form.submit "Create Event", 
         class: "cursor-pointer rounded-lg bg-transparent px-8 py-2 text-sm font-medium text-neutral-800 transition-all duration-100 hover:bg-[var(--brand-black)] hover:text-white dark:text-neutral-50 dark:border-neutral-700" %>
     </div>
