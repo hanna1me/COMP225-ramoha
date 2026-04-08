@@ -4,18 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-tester_drinks: 
+tester_event_1: 
   user: tester
-  requirement: req_drinks
+  post: test_event
 
-tester_2_snacks: 
-  user: tester_2
-  requirement: req_snacks
-
-tester_controllers:
+tester_event_2:
   user: tester
-  requirement: req_game_controllers
+  post: test_event_2
 
-tester_2_controllers:
+tester_2_event_2:
   user: tester_2
-  requirement: req_game_controllers
+  post: test_event_2

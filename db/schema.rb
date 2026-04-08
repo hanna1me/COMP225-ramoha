@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_05_221858) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_08_012346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,15 +23,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_05_221858) do
     t.index ["user_id"], name: "index_assignedreqs_on_user_id"
   end
 
+  create_table "interestedevents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "post_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["post_id"], name: "index_interestedevents_on_post_id"
+    t.index ["user_id"], name: "index_interestedevents_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "description"
     t.date "event_date"
     t.string "event_title"
     t.string "location"
+    t.bigint "organizer_id", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["organizer_id"], name: "index_posts_on_organizer_id"
   end
 
   create_table "requirements", force: :cascade do |t|
@@ -52,6 +61,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_05_221858) do
 
   add_foreign_key "assignedreqs", "requirements"
   add_foreign_key "assignedreqs", "users"
-  add_foreign_key "posts", "users"
+  add_foreign_key "interestedevents", "posts"
+  add_foreign_key "interestedevents", "users"
+  add_foreign_key "posts", "users", column: "organizer_id"
   add_foreign_key "requirements", "posts"
 end

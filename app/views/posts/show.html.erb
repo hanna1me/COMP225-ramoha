@@ -18,7 +18,7 @@
         <div class="flex items-center text-[var(--post-background)]">
           <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
           <div class="ml-3">
-            <p class="text-md font-medium text-[var(--brand-black)]">@<%=@post.user.username%></p>
+            <p class="text-md font-medium text-[var(--brand-black)]">@<%=@post.organizer.username%></p>
             <p class="text-sm font-light text-[var(--brand-black)]">
               <%# <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
               <%= @post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
@@ -51,7 +51,7 @@
       <div class="flex flex-col gap-2 my-2">
          <%# Username %>
           <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white break-words">
-            <%=@post.user.username%> is hosting: <span class="px-1 underline decoration-solid underline-offset-4 decoration-[var(--brand-blue)]"><%=@post.event_title%></span>
+            <%=@post.organizer.username%> is hosting: <span class="px-1 underline decoration-solid underline-offset-4 decoration-[var(--brand-blue)]"><%=@post.event_title%></span>
           </h3>
 
           <%# Location info %>
