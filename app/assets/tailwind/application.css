@@ -1245,7 +1245,15 @@ em-emoji-picker {
   --toast-transform: translateY(0);
 }
 
+turbo-frame#posts[busy] {
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
 
+turbo-frame#posts {
+  transition: opacity 0.3s ease-in-out;
+}
 
 body {
   font-family: 'Bricolage Grotesque', sans-serif;
@@ -1256,20 +1264,47 @@ h1, h2, h3, h4, .heading-font {
 }
 
 @layer base {
+  :root {
+  /* colors */  
+    --brand-blue: #00518D;
+    
+    /*new colors:*/
+    --brand-green: #E3B505;
+    --brand-orange: #F15152;
+    --brand-black: #221E22;
+    --brand-blue: #3E78B2;
+    --main-background: #FFFFFF;
+    --post-background: #F4F2F1;
+    --post-details: #6B6B6B;
+    --grey-subtitle: #AFAAB9;
+
+
+   
+
+
+    /* google fonts */
+    --font-unbounded: 'Unbounded', sans-serif;
+    --font-bricolage: 'Bricolage Grotesque', sans-serif;
+  }
+
   h1 {
-    @apply font-['Unbounded'] text-[40px] font-bold leading-tight tracking-[-0.05em];
+    @apply text-[40px] font-bold leading-tight tracking-[-0.05em];
+    font-family: var(--font-unbounded);
   }
 
   h2 {
-    @apply font-['Unbounded'] text-[32px] font-semibold leading-snug tracking-[-0.05em];
+    @apply text-[32px] font-semibold leading-snug tracking-[-0.05em];
+    font-family: var(--font-unbounded);
   }
 
   h3 {
-    @apply font-['Unbounded'] text-[24px] font-medium tracking-[-0.05em];
+    @apply text-[24px] font-medium tracking-[-0.05em];
+    font-family: var(--font-unbounded);
   }
 
   p {
-    @apply font-['Bricolage_Grotesque'] text-base leading-relaxed text-neutral-700 dark:text-neutral-300;
+    @apply text-base leading-relaxed text-neutral-700 dark:text-neutral-300;
+    font-family: var(--font-bricolage);
   }
 }
 

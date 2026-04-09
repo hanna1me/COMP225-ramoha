@@ -4,16 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-test_event: 
-  organizer: john_doe
-  event_title: "Test Event"
-  location: "Test Location"
-  event_date: 31-12-2010
-  description: "Test Description"
+tester_event_1: 
+  user: tester
+  post: test_event
 
-test_event_2: 
-  organizer: john_doe
-  event_title: "Test Event 2"
-  location: "Test Location"
-  event_date: 31-12-2026
-  description: "Test Description"
+tester_event_2:
+  user: tester
+  post: test_event_2
+
+tester_2_event_2:
+  user: tester_2
+  post: test_event_2

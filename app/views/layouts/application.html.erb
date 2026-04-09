@@ -39,14 +39,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe/dist/photoswipe.css">
   </head>
 
-  <body class="h-screen overflow-hidden bg-neutral-50 dark:bg-neutral-900">
+  <body class="h-screen overflow-hidden bg-[var(--main-background)]dark:bg-neutral-900 tracking-tight">
     <div class="flex h-full w-screen">
-      <div class="sidebar shrink-0 h-full w-64">
+      <div class="sidebar">
         <%= render 'layouts/sidebar' %> <!-- renders sidebar -->
       </div>
-      <main class="flex-1 h-full overflow-y-auto p-[5%]">
-        <%= yield %> 
-        <!-- page content -->
+
+      <main class="flex-1 h-full overflow-y-auto">
+        <div class="relative h-40 w-full overflow-hidden shadow-sm border border-black/5 dark:border-white/5"> 
+          <%= image_tag "background-pattern.svg", class: "h-full w-full object-cover" %> 
+
+          <div class="absolute inset-0 flex items-center justify-center">
+            <%= image_tag "logo-dark.svg", class: "max-w-[500px] w-[50vw]  h-auto z-10" %>
+          </div>
+           
+    
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        <div class = "px-[3%] py-7 transition-all duration-300 flex-1 items-center justify-between">
+          <!-- page content -->
+          <%= yield %> 
+        </div>
       </main>
     </div>  
   </body>

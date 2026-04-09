@@ -4,7 +4,16 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    sort_option = params[:sort]
+    # @posts = Post.all
+    @posts = case sort_option
+    when "event_date"
+      Post.order(event_date: :asc)
+    when "date_posted"
+      Post.order(updated_at: :desc)
+    else
+      Post.order(updated_at: :desc)
+    end
   end
 
   # GET /posts/1 or /posts/1.json
@@ -23,7 +32,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.user = current_user
+    @post.organizer = current_user
 
     respond_to do |format|
       if @post.save
