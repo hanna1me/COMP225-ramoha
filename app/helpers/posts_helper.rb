@@ -17,4 +17,12 @@ module PostsHelper
       event_date
     end
   end
+
+  def error_handling(post_errors)
+    if post_errors.any?
+      post_errors.full_messages.each do |message|
+        message
+      end
+    end
+  end
 end

@@ -1,45 +1,28 @@
 <% content_for :title, "Editing Event" %>
-
-<%# error handling %>
-<% if @post.errors.any? %>
-  <div class="mb-6 flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 dark:border-green-900/30 dark:bg-green-950/20 dark:text-green-400">
-    <ul style="list-style-type disc;">
-      <% @post.errors.full_messages.each do |message|%>
-        <li><%=message%></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
+<%= render 'layouts/error' %>
+<%= render 'layouts/notice' %>
 <h1 class="text-4xl !font-[Bricolage_Grotesque] font-semibold text-neutral-900 dark:text-white tracking-tight">Need to change some details?</h1>
-
-<%# <%= render "form", post: @post %> 
+<%# <%= render "form", post: @post %>
 <br>
 <%= form_with model: @post, class: "w-3/4" do |form| %>
-
- <div class="mb-6 relative gap-y-1.5">
+  <div class="mb-6 relative gap-y-1.5">
     <%= form.label :event_title, "What are you hosting?" %>
     <%= form.text_field :event_title, class: "form-control", placeholder: "Could this be the best event ever...?" %>
   </div>
-
   <div class="mb-6 relative gap-y-1.5">
     <%= form.label :location, "Where's it at?" %>
     <%= form.text_field :location, class: "form-control", placeholder: "123 Awesome Lane..." %>
   </div>
-
   <div class="mb-6 relative gap-y-1.5">
     <%= form.label :event_date, "When is it?" %>
     <%= form.date_field :event_date, class: "form-control" %>
   </div>
-
   <div class="mb-6 relative gap-y-1.5 h-full">
     <%= form.label :description, "What's happening?" %>
     <%= form.text_area :description, class: "form-control min-h-32", placeholder: "Tell us about your event..." %>
   </div>
-
   <div class="mt-4">
     <button type="button" class="flex-row items-center justify-center w-full gap-1.5 rounded-lg bg-transparent px-3.5 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200">
-    <%= form.submit "Update Event", class: "btn-primary" %> </div>
+      <%= form.submit "Update Event", class: "btn-primary" %> </div>
   </button>
-    
 <% end %>

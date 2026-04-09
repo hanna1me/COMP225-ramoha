@@ -1,16 +1,6 @@
 <% content_for :title, "New Event" %>
-
-<%# error handling %>
-<% if @post.errors.any? %>
-  <div class="mb-6 flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 dark:border-green-900/30 dark:bg-green-950/20 dark:text-green-400">
-    <ul style="list-style-type disc;">
-      <% @post.errors.full_messages.each do |message|%>
-        <li><%=message%></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
+<%= render 'layouts/error' %>
+<%= render 'layouts/notice' %>
 <div class="w-full flex flex-col items-center">
   <h1 class="text-4xl !font-[Bricolage_Grotesque] font-light italic bg-[var(--brand-green)] px-2 text-neutral-900 dark:text-white tracking-tight justify-start">New event incoming!</h1>
   <%# <%= render "form", post: @post %>
