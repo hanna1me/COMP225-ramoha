@@ -1269,14 +1269,15 @@ h1, h2, h3, h4, .heading-font {
     --brand-blue: #00518D;
     
     /*new colors:*/
-    --brand-green: #E8F530;
-    --brand-orange: #EE5622;
+    --brand-green: #E3B505;
+    --brand-orange: #F15152;
     --brand-black: #221E22;
+    --brand-blue: #3E78B2;
     --main-background: #FFFFFF;
     --post-background: #F4F2F1;
     --post-details: #6B6B6B;
     --grey-subtitle: #AFAAB9;
-    --blue-subtitle: #5483B8;
+
 
    
 

@@ -1,83 +1,86 @@
 <% content_for :title, @post.event_title %>
-
-<div class="max-w-2xl mx-auto w-full h-full">
-  <% if notice.present? %>
-    <div class="mb-6 flex items-center rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 dark:border-green-900/30 dark:bg-green-950/20 dark:text-green-400 w-2xl">
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-      </svg>
-      <%= notice %>
-    </div>
-  <% end %>
-
+<%= render 'layouts/error' %>
+<%= render 'layouts/notice' %>
+<div class="mt-2 max-w-2xl mx-auto w-full h-full">
   <div class="bg-[var(--post-background)] rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
-  <%# Header %>
-    <div class="px-6 py-4 bg-[var(--brand-black)] font-[Unbounded] border-t border-black/10 dark:border-white/10">
+    <%# Header %>
+    <div class="px-6 py-4 bg-[var(--post-background)] font-[Unbounded] border-b border-black/10 dark:border-white/10">
       <div class="flex items-center justify-between">
         <%# left of header %>
         <div class="flex items-center text-[var(--post-background)]">
           <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
           <div class="ml-3">
-            <p class="text-md font-semibold text-[var(--post-background)]">@<%=@post.user.username%></p>
-            <p class="text-sm font-medium text-[var(--post-background)]">
+            <p class="text-md font-medium text-[var(--brand-black)]">@<%=@post.organizer.username%></p>
+            <p class="text-sm font-light text-[var(--brand-black)]">
+              <%# <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
               <%= @post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
             </p>
           </div>
         </div>
-
         <%# right of header %>
-        <div class = "flex items-center space-x-4">
-           <%# Event countdown %>
-            <p class="bg-[var(--brand-orange)] text-[var(--post-background)] text-lg px-2 rounded-lg justify-end">
-                  <%= event_countdown_text(@post.event_date)%>
-                </p>
-            <%# Share button %>
-            <button type="button" class="text-[var(--post-background)]" data-controller="clipboard"
+        <div class = "flex items-center gap-4">
+          <%# Event countdown %>
+          <p class="bg-[var(--brand-blue)] italic font-light text-[var(--post-background)] text-lg px-2 justify-end">
+            <%= event_countdown_text(@post.event_date)%>
+          </p>
+          <%# Share button %>
+          <button type="button" class="text-[var(--brand-black)]" data-controller="clipboard"
             data-clipboard-text="<%= post_url(@post) %>"
             data-clipboard-success-message-value="Post link copied!"
             data-clipboard-show-tooltip-value="true">
-              <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-              </svg>
-            </button>
+            <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
-
-
     <%# Main content %>
     <div class="px-6 py-4">
-      <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white my-2 break-words">
-        <%=@post.user.username%> is hosting: <span class="bg-[var(--brand-green)]"><%=@post.event_title%></span>
-      </h3>
-      <h4 class="text-lg font-normal text-[var(--post-details)] dark:text-white mb-2 break-words !font-[Bricolage_Grotesque]">
-        at <span class = "italic"><%=@post.location%></span>
-      </h4>
-      <h5 class="text-[var(--post-details)]  ">on <%=if @post.event_date != nil
-                  @post.event_date.strftime('%B %d, %Y')
-                else
-                  @post.event_date
-                end%></h5>
-      <p class="text-[var(--brand-black)] dark:text-neutral-300 text-lg mb-2 break-words whitespace-pre-line">
-        <%= @post.description%>
-      </p>
-
+      <div class="flex flex-col gap-2 my-2">
+        <%# Username %>
+        <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white break-words">
+          <%=@post.organizer.username%> is hosting: <span class="px-1 underline decoration-solid underline-offset-4 decoration-[var(--brand-blue)]"><%=@post.event_title%></span>
+        </h3>
+        <%# Location info %>
+        <div class="flex flex-row gap-2 text-[var(--brand-black)] font-medium dark:text-white break-words">
+          <%# Icon %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+          </svg>
+          <%# Location %>
+          <h4 class="text-lg"><%=@post.location%></h4>
+        </div>
+        <%# Date info %>
+        <div class="flex flex-row gap-2 text-[var(--brand-black)] font-medium">
+          <%# Icon %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+          </svg>
+          <%# Date %>
+          <h4 class=""><%=format_date(@post.event_date)%></h4>
+        </div>
+        <%# Post content %>
+        <p class="text-[var(--brand-black)] my-4 dark:text-neutral-300 text-md break-words">
+          <%# 100 char limit %>
+          <%= truncate(@post.description, length: 100, separator: ' ') %>
+        </p>
+      </div>
       <div class="px-4 py-4 sm:px-6">
         <%# Delete and Edit %>
         <div class="flex items-end justify-between pt-6 border-t border-[var(--grey-subtitle)] dark:border-white/5">
-        <div class="flex gap-2">
-          <%= link_to edit_post_path(@post), class: "px-4 py-2 text-sm font-semibold rounded-lg bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:text-neutral-200 dark:hover:bg-neutral-700 transition-all" do %>
-            Edit Event
-          <% end %>
-        </div>
-        
-        <%= button_to @post, method: :delete, 
+          <div class="flex gap-2">
+            <%= link_to edit_post_path(@post), class: "px-4 py-2 text-sm font-semibold rounded-lg bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-700/50 dark:text-neutral-200 dark:hover:bg-neutral-700 transition-all" do %>
+              Edit Event
+            <% end %>
+          </div>
+          <%= button_to @post, method: :delete, 
             form: { data: { confirm: "Are you sure?" } },
             class: "px-4 py-2 text-sm font-semibold rounded-lg text-[var(--brand-orange)] hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30 transition-all" do %>
-          Delete
-        <% end %>
+            Delete
+          <% end %>
+        </div>
       </div>
-      </div>
-    </div>
     </div>
   </div>
+</div>

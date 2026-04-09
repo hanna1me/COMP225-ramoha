@@ -1,36 +1,29 @@
 <% content_for :title, "New Event" %>
-
-<div class="w-full flex flex-col items-center">
-  <h1 class="text-4xl !font-[Bricolage_Grotesque] font-light italic bg-[var(--brand-green)] px- text-neutral-900 dark:text-white tracking-tight justify-start">New event incoming!</h1>
-
-  <%# <%= render "form", post: @post %> 
+<%= render 'layouts/error' %>
+<%= render 'layouts/notice' %>
+<div class="mt-2 w-full flex flex-col items-center">
+  <h1 class="text-4xl !font-[Bricolage_Grotesque] font-light italic bg-[var(--brand-green)] px-2 text-neutral-900 dark:text-white tracking-tight justify-start">New event incoming!</h1>
   <br>
   <%= form_with model: @post, class: "w-3/4" do |form| %>
-  <div class="mb-6 relative gap-y-1.5">
+    <div class="mb-6 relative gap-y-1.5">
       <%= form.label :event_title, "What are you hosting?" %>
       <%= form.text_field :event_title, class: "form-control", placeholder: "Could this be the best event ever...?" %>
     </div>
-
     <div class="mb-6 relative gap-y-1.5">
       <%= form.label :location, "Where's it at?" %>
       <%= form.text_field :location, class: "form-control", placeholder: "123 Awesome Lane..." %>
     </div>
-
     <div class="mb-6 relative gap-y-1.5">
       <%= form.label :event_date, "When is it?" %>
       <%= form.date_field :event_date, class: "form-control" %>
     </div>
-
     <div class="relative gap-y-1.5 h-full">
       <%= form.label :description, "What's happening?" %>
       <%= form.text_area :description, class: "form-control min-h-24", placeholder: "Tell us about your event..." %>
     </div>
-
-    <div class="mt-8 flex justify-center w-full">
+    <div class="mt-6 flex justify-center w-full">
       <%= form.submit "Create Event", 
-        class: "cursor-pointer rounded-lg bg-transparent px-8 py-2 text-sm font-medium text-neutral-800 transition-all duration-100 hover:bg-[var(--brand-black)] hover:text-white dark:text-neutral-50 dark:border-neutral-700" %>
+        class: "flex-row items-center justify-center w-full gap-1.5 rounded-lg bg-[var(--brand-black)] px-3.5 py-2 text-sm font-medium whitespace-nowrap text-[var(--main-background)] transition-all duration-100 ease-in-out select-none hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200" %>
     </div>
-      
   <% end %>
-
 </div>

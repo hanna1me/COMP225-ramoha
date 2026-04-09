@@ -2,3 +2,9 @@
 
 john_doe:
   username: "John Doe"
+
+tester:
+  username: "Tester 1"
+
+tester_2:
+  username: "Tester 2"

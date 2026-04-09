@@ -2,14 +2,14 @@
   <div class="bg-[var(--post-background)] rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
 
     <%# Header %>
-    <div class="px-6 py-4 bg-[var(--brand-black)] font-[Unbounded] border-t border-black/10 dark:border-white/10">
+    <div class="px-6 py-4 bg-[var(--post-background)] font-[Unbounded] border-b border-black/10 dark:border-white/10">
       <div class="flex items-center justify-between">
         <%# left of header %>
         <div class="flex items-center text-[var(--post-background)]">
           <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author">
           <div class="ml-3">
-            <p class="text-md font-semibold text-[var(--post-background)]">@<%=post.user.username%></p>
-            <p class="text-sm font-medium text-[var(--post-background)]">
+            <p class="text-md font-medium text-[var(--brand-black)]">@<%=post.organizer.username%></p>
+            <p class="text-sm font-light text-[var(--brand-black)]">
               <%# <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
               <%= post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
             </p>
@@ -17,13 +17,13 @@
         </div>
 
         <%# right of header %>
-        <div class = "flex items-center space-x-4">
+        <div class = "flex items-center gap-4">
            <%# Event countdown %>
-            <p class="bg-[var(--brand-orange)] text-[var(--post-background)] text-lg px-2 rounded-lg justify-end">
+            <p class="bg-[var(--brand-blue)] italic font-light text-[var(--post-background)] text-lg px-2 justify-end">
                   <%= event_countdown_text(post.event_date)%>
                 </p>
             <%# Share button %>
-            <button type="button" class="text-[var(--post-background)]" data-controller="clipboard"
+            <button type="button" class="text-[var(--brand-black)]" data-controller="clipboard"
             data-clipboard-text="<%= post_url(post) %>"
             data-clipboard-success-message-value="Post link copied!"
             data-clipboard-show-tooltip-value="true">
@@ -37,31 +37,49 @@
 
     <%# Main content %>
     <div class="px-6 py-4">
-      <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white my-2 break-words">
-        <%=post.user.username%> is hosting: <span class="bg-[var(--brand-green)]"><%=post.event_title%></span>
-      </h3>
-       <h4 class="text-[var(--brand-details)] mb-2">on <%=if post.event_date != nil
-                  post.event_date.strftime('%B %d, %Y')
-                else
-                  post.event_date
-                end%></h4>
-      <h4 class="text-lg font-normal text-[var(--post-details)] dark:text-white break-words !font-[Bricolage_Grotesque]">
-        at <span class = "italic"><%=post.location%></span>
-      </h4>
-     
-      <p class="text-[var(--brand-black)] dark:text-neutral-300 text-md mb-2 break-words whitespace-pre-line">
-        <%# 150 char limit %>
-        <%= truncate(post.description, length: 150, separator: ' ') %>
-      </p>
+      <div class="flex flex-col gap-2 my-2">
+         <%# Username %>
+          <h3 class="text-2xl font-semibold text-[var(--brand-black)] dark:text-white break-words">
+            <%=post.organizer.username%> is hosting: <span class="px-1 underline decoration-solid underline-offset-4 decoration-[var(--brand-blue)]"><%=post.event_title%></span>
+          </h3>
 
-      <div class="px-4 py-4 sm:px-6">
-      <div class="flex justify-end">
-        <button type="button" class="justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-[var(--brand-green)] hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200">
+          <%# Location info %>
+          <div class="flex flex-row gap-2 text-[var(--brand-black)] font-medium dark:text-white break-words">
+            <%# Icon %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+            </svg>
+            <%# Location %>
+            <h4 class="text-lg"><%=post.location%></h4>
+          </div>
+
+          <%# Date info %>
+          <div class="flex flex-row gap-2 text-[var(--brand-black)] font-medium">
+            <%# Icon %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+            </svg>
+            <%# Date %>
+            <h4 class=""><%=format_date(post.event_date)%></h4>
+        </div>
+
+        <%# Post content %>
+        <p class="text-[var(--brand-black)] my-4 dark:text-neutral-300 text-md break-words">
+        <%# 100 char limit %>
+        <%= truncate(post.description, length: 100, separator: ' ') %>
+        </p>
+      </div>
+
+      
+
+      <div class="px-2 py-2 sm:px-6">
+      <div class="flex gap-2 justify-end">
+        <button type="button" class="justify-right gap-1.5 rounded-md bg-transparent px-2 py-2 text-md font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:text-[var(--brand-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200">
           I'm interested!
         </button>
 
           <button type="button">
-              <%= link_to "See full details", post, class:"justify-right gap-1.5 rounded-full bg-transparent px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:bg-[var(--brand-green)] hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200"%>
+              <%= link_to "See full details", post, class:"justify-right gap-1.5 rounded-md bg-transparent px-2 py-2 text-md font-medium whitespace-nowrap text-neutral-800 transition-all duration-100 ease-in-out select-none hover:text-[var(--brand-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600 disabled:cursor-not-allowed dark:text-neutral-50 dark:hover:bg-neutral-600/50 dark:hover:text-white dark:focus-visible:outline-neutral-200"%>
         </button>
         </a>
       </div>
