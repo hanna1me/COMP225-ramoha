@@ -5,4 +5,5 @@ class Post < ApplicationRecord
     has_many :users, through: :interestedevents
     validates :event_title, :location, :event_date, presence: true
     validates :event_title, length: { maximum: 50 }
+    accepts_nested_attributes_for :requirements, allow_destroy: true
 end
