@@ -16,3 +16,7 @@ pin "air-datepicker/locale/en", to: "https://esm.sh/air-datepicker@3.6.0/locale/
 pin "emoji-mart", to: "https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"
 pin "photoswipe", to: "https://cdn.jsdelivr.net/npm/photoswipe/dist/photoswipe.esm.js"
 pin "motion", to: "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+
+# Make sure these lines are in your importmap:
+pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
+pin_all_from "app/javascript/controllers", under: "controllers"

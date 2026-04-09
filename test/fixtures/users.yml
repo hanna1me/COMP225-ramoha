@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+john_doe:
+  username: "John Doe"
+
+tester:
+  username: "Tester 1"
+
+tester_2:
+  username: "Tester 2"
