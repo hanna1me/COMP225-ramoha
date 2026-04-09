@@ -1,15 +1,7 @@
 <% content_for :title, @post.event_title %>
 <%= render 'layouts/error' %>
 <%= render 'layouts/notice' %>
-<div class="max-w-2xl mx-auto w-full h-full">
-  <% if notice.present? %>
-    <div class="mb-6 flex items-center rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700 dark:border-green-900/30 dark:bg-green-950/20 dark:text-green-400 w-2xl">
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-      </svg>
-      <%= notice %>
-    </div>
-  <% end %>
+<div class="mt-2 max-w-2xl mx-auto w-full h-full">
   <div class="bg-[var(--post-background)] rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
     <%# Header %>
     <div class="px-6 py-4 bg-[var(--post-background)] font-[Unbounded] border-b border-black/10 dark:border-white/10">

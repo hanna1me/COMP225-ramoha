@@ -4,4 +4,5 @@ class Post < ApplicationRecord
     has_many :interestedevents
     has_many :users, through: :interestedevents
     validates :event_title, :location, :event_date, presence: true
+    validates :event_title, length: { maximum: 50 }
 end
