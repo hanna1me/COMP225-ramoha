@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
-  # Profile pic devise persmission
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
@@ -22,10 +20,5 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       redirect_to login_path, alert: "You must be logged in to do that."
     end
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
   end
 end
