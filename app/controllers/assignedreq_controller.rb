@@ -11,6 +11,10 @@ class AssignedreqController < ApplicationController
     @assignedreq = Assignedreq.new(assignedreq_params)
   end
 
+  def destroy
+    @assignedreq.destroy!
+  end
+
   private
   def assignedreq_params
     params.fetch(:assignedreq, {}).permit(:req_description)

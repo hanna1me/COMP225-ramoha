@@ -24,9 +24,9 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit 
+  def edit
     if @post.organizer != current_user
-      redirect_to @post, notice: "You do not have permission to edit this post." #I'd like this to be red or something bc it is kind of a warning
+      redirect_to @post, notice: "You do not have permission to edit this post." # I'd like this to be red or something bc it is kind of a warning
     end
   end
 
@@ -45,19 +45,21 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated.", status: :see_other 
+      redirect_to @post, notice: "Post was successfully updated.", status: :see_other
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
     if @post.organizer != current_user
-      redirect_to @post, notice: "You're not allowed to destroy other people's posts!" #I'd like this to be red or something bc it is kind of a warning
+      redirect_to @post, notice: "You're not allowed to destroy other people's posts!" # I'd like this to be red or something bc it is kind of a warning
     else
+      # https://stackoverflow.com/questions/16945958/proper-way-to-delete-has-many-through-join-records
+      Requirement.where(id: @post.requirements).delete_all
       @post.destroy!
-      redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other 
+      redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other
     end
   end
 
