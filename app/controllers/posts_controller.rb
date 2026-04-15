@@ -4,16 +4,13 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    sort_option = params[:sort]
-    # @posts = Post.all
-    @posts = case sort_option
-    when "event_date"
-      Post.order(event_date: :asc)
-    when "date_posted"
-      Post.order(updated_at: :desc)
-    else
-      Post.order(updated_at: :desc)
-    end
+    @posts = Post.all
+    sort_options = {
+      "event_date" => { event_date: :asc },
+      "date_posted" => { updated_at: :desc }
+    }
+    order = sort_options[params[:sort]] || { updated_at: :desc }
+    @posts = Post.order(order)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -23,6 +20,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.requirements.build
   end
 
   # GET /posts/1/edit
@@ -71,6 +69,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.fetch(:post, {}).permit(:event_title, :location, :event_date, :description)
+      params.fetch(:post, {}).permit(:event_title, :location, :event_date, :description, requirements_attributes: [ :id, :req_description, :_destroy ])
     end
 end

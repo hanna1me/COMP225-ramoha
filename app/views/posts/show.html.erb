@@ -12,7 +12,6 @@
           <div class="ml-3">
             <p class="text-md font-medium text-[var(--brand-black)]">@<%=@post.organizer.username%></p>
             <p class="text-sm font-light text-[var(--brand-black)]">
-              <%# <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
               <%= @post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
             </p>
           </div>
@@ -62,9 +61,16 @@
         </div>
         <%# Post content %>
         <p class="text-[var(--brand-black)] my-4 dark:text-neutral-300 text-md break-words">
-          <%# 100 char limit %>
-          <%= truncate(@post.description, length: 100, separator: ' ') %>
+          <%= @post.description %>
         </p>
+        <% if @post.requirements.present? %>
+          <h3> Event Requirements</h3>
+          <ul>
+            <% @post.requirements.each do |requirement|%>
+              <li><%= requirement.req_description%></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
       <div class="px-4 py-4 sm:px-6">
         <%# Delete and Edit %>
