@@ -24,7 +24,10 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
+  def edit 
+    if @post.organizer != current_user
+      redirect_to @post, notice: "You do not have permission to edit this post." #I'd like this to be red or something bc it is kind of a warning
+    end
   end
 
   # POST /posts or /posts.json
@@ -32,37 +35,29 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.organizer = current_user
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to @post, notice: "Post was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update(post_params)
+      redirect_to @post, notice: "Post was successfully updated.", status: :see_other 
+    else
+      render :edit, status: :unprocessable_entity 
     end
   end
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+    if @post.organizer != current_user
+      redirect_to @post, notice: "You're not allowed to destroy other people's posts!" #I'd like this to be red or something bc it is kind of a warning
+    else
+      @post.destroy!
+      redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other 
     end
   end
 
