@@ -4,7 +4,6 @@
 <div class="mt-2 w-full flex flex-col items-center">
   <h1 class="text-4xl !font-[Bricolage_Grotesque] font-light italic bg-[var(--brand-green)] px-2 text-neutral-900 dark:text-white tracking-tight justify-start">New event incoming!</h1>
   <br>
-  
   <%= form_with model: @post, 
     data: {
       controller: "nested-form", 
@@ -13,41 +12,33 @@
       nested_form_max_hint_text_value: "Whoa! 10 requirements is plenty!"
     },
     class: "w-3/4" do |form| %>
-
     <div class="mb-6 relative gap-y-1.5">
       <%= form.label :event_title, "What are you hosting?" %>
       <%= form.text_field :event_title, class: "form-control", placeholder: "Could this be the best event ever...?" %>
     </div>
-
     <div class="mb-6 relative gap-y-1.5">
       <%= form.label :location, "Where's it at?" %>
       <%= form.text_field :location, class: "form-control", placeholder: "123 Awesome Lane..." %>
     </div>
-
     <div class="mb-6 relative gap-y-1.5">
       <%= form.label :event_date, "When is it?" %>
       <%= form.date_field :event_date, class: "form-control" %>
     </div>
-
     <div class="relative gap-y-1.5 h-full">
       <%= form.label :description, "What's happening?" %>
       <%= form.text_area :description, class: "form-control min-h-24", placeholder: "Tell us about your event..." %>
     </div>
-
     <%# Requirements %>
     <div class="w-full flex flex-col space-y-3 mt-6">
       <div class="items-center justify-center">
         <h3 class="text-md font-regular text-neutral-900 dark:text-neutral-100">Got any requirements?</h3>
       </div>
-
       <div class="space-y-3" data-nested-form-target="container">
         <%= form.fields_for :requirements do |req_form| %>
           <div class="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-700/30 space-y-3" 
                data-nested-form-target="item" 
                data-new-record="false">
-            
             <%= req_form.hidden_field :_destroy %>
-            
             <div class="flex items-center justify-between gap-2">
               <label class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Requirement</label>
               <button type="button" 
@@ -58,21 +49,18 @@
                 </svg>
               </button>
             </div>
-
             <%= req_form.text_area :req_description, 
                 class: "form-control min-h-20", 
                 placeholder: "Need chips? A couple of sodas?" %>
           </div>
         <% end %>
       </div>
-
       <%# adding new requirements%>
       <template data-nested-form-target="template">
         <%= form.fields_for :requirements, Requirement.new, child_index: "NEW_RECORD" do |req_form| %>
           <div class="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-700/30 space-y-3" 
                data-nested-form-target="item" 
                data-new-record="true">
-            
             <div class="flex items-center justify-between gap-2">
               <label class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Requirement</label>
               <button type="button" 
@@ -83,14 +71,12 @@
                 </svg>
               </button>
             </div>
-
             <%= req_form.text_area :req_description, 
                 class: "form-control min-h-20", 
                 placeholder: "Add another requirement..." %>
           </div>
         <% end %>
       </template>
-
       <%# Add Button %>
       <button type="button" 
               class="flex w-full items-center justify-center gap-1.5 rounded-lg border border-black/10 bg-white/90 px-3.5 py-2 text-sm font-medium disabled:opacity-50 disabled:bg-neutral-100 dark:bg-neutral-800 dark:text-white" 
@@ -101,13 +87,11 @@
         </svg>
         Add Requirement
       </button>
-
       <p class="hidden text-xs text-red-500 text-center animate-pulse" 
          data-nested-form-target="maxHint"></p>
     </div>
-
     <div class="mt-6 flex justify-center w-full">
-      <%= form.submit "Update Event", class: "w-full rounded-lg bg-neutral-900 px-3.5 py-2 text-sm font-medium text-white transition-all hover:bg-neutral-700" %>
+      <%= form.submit "Update Event", class: "w-full rounded-lg bg-neutral-900 px-3.5 py-2 text-sm font-medium text-white transition-all hover:bg-neutral-700", method: :edit, data: { turbo_method: :edit, turbo_confirm: "Are you sure? Once submitted, your edits cannot be undone."} %>
     </div>
   <% end %>
 </div>
