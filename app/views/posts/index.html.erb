@@ -16,8 +16,8 @@
       <div class="w-full max-w-2xs">
         <%= select_tag :sort,
             options_for_select([
-              ["Date posted", "date_posted"],
-              ["Event date", "event_date"]
+              ["Most recent posts first", "date_posted"],
+              ["Earliest events first", "event_date"]
             ], params[:sort]),
             include_blank: "Sort by...",
             class: "w-full [&>*:first-child]:!cursor-pointer",
