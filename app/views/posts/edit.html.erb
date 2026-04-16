@@ -91,7 +91,7 @@
          data-nested-form-target="maxHint"></p>
     </div>
     <div class="mt-6 flex justify-center w-full">
-      <%= form.submit "Update Event", class: "w-full rounded-lg bg-neutral-900 px-3.5 py-2 text-sm font-medium text-white transition-all hover:bg-neutral-700", method: :edit, data: { turbo_method: :edit, turbo_confirm: "Are you sure? Once submitted, your edits cannot be undone."} %>
+      <%= form.submit "Update Event", class: "w-full rounded-lg bg-neutral-900 px-3.5 py-2 text-sm font-medium text-white transition-all hover:bg-neutral-700", method: :edit, data: {turbo_confirm: "Are you sure? Once submitted, your edits cannot be undone."} %>
     </div>
   <% end %>
 </div>
