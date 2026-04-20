@@ -2,6 +2,11 @@
 <%= render 'layouts/error' %>
 <%= render 'layouts/notice' %>
 <div class="mt-2 max-w-2xl mx-auto w-full h-full">
+  <% if flash[:alert] %>
+    <div class="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/30 dark:bg-red-950/20 dark:text-red-400">
+    <%= flash[:alert] %>
+    </div>
+  <% end %>
   <div class="bg-[var(--post-background)] rounded-xl shadow-xs overflow-hidden border border-black/10 dark:border-white/10 w-2xl">
     <%# Header %>
     <div class="px-6 py-4 bg-[var(--post-background)] font-[Unbounded] border-b border-black/10 dark:border-white/10">
