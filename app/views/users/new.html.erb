@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <%= form_with model: @user, url: signup_path do |f| %>
+  <%= form_with model: @user, url: signup_path, multipart: true do |f| %>
     <div class="mb-4">
       <%= f.label :avatar, class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
-      <%= f.file_field :avatar, class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 mb-4" %>
+      <%= f.file_field :avatar, accept: "image/jpeg,image/png", class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 mb-4" %>
 
       <%= f.label :username, class: "block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1" %>
       <%= f.text_field :username,
