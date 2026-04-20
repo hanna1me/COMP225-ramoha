@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     permitted[:username] = permitted[:username].downcase.strip if permitted[:username].present?
     notice = permitted.key?(:username) ? "Username updated!" : "Profile picture updated!"
     if @user.update(permitted)
-      redirect_to settings_path, notice: notice
+      redirect_to settings_path, notice: "Successfully saved changes!"
     else
       render :edit, status: :unprocessable_entity
     end
