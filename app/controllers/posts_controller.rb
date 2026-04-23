@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     if @post.organizer != current_user
-      redirect_to @post, notice: "You do not have permission to edit this post." # I'd like this to be red or something bc it is kind of a warning
+      redirect_to @post, alert: "You do not have permission to edit this post."
     end
   end
 
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1 or /posts/1.json
   def destroy
     if @post.organizer != current_user
-      redirect_to @post, notice: "You're not allowed to destroy other people's posts!" # I'd like this to be red or something bc it is kind of a warning
+      redirect_to @post, alert: "You're not allowed to destroy other people's posts!" 
     else
       # https://stackoverflow.com/questions/16945958/proper-way-to-delete-has-many-through-join-records
       Requirement.where(id: @post.requirements).delete_all

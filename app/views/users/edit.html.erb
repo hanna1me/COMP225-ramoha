@@ -1,0 +1,70 @@
+<% content_for :title, "Settings" %>
+<%= render 'layouts/notice' %>
+
+<div class="flex justify-center py-8">
+<div class="w-96 px-2">
+  <h1 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Settings</h1>
+
+  <section class="rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900 p-7">
+    <h2 class="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Profile picture</h2>
+
+    <div class="flex items-center gap-10 mb-4">
+      <div class="w-20 h-20 rounded-full overflow-hidden shrink-0">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar, class: "object-cover", width: 100, height: 100, alt: "Profile" %>
+        <% else %>
+          <div class="w-20 h-20 bg-neutral-300 dark:bg-neutral-700 flex items-center justify-center text-lg font-bold text-neutral-600 dark:text-neutral-300">
+            <%= @user.username.first.upcase %>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-neutral-900 dark:text-neutral-100">@<%= @user.username %></p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">JPG or PNG only</p>
+      </div>
+    </div>
+
+    <% if @user.errors[:avatar].any? %>
+      <div class="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-400">
+        <% @user.errors[:avatar].each do |msg| %>
+          <p>Avatar <%= msg %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, url: settings_path, method: :patch, multipart: true do |f| %>
+      <div class="mb-3">
+        <%= f.file_field :avatar, accept: "image/jpeg,image/png",
+              class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 focus:border-neutral-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100" %>
+      </div>
+      <%= f.submit "Save picture",
+            class: "rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-700 focus:outline-none dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 cursor-pointer" %>
+    <% end %>
+  </section>
+
+  <section class="rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900 p-7 mt-4">
+    <h2 class="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Username</h2>
+
+    <% if @user.errors[:username].any? %>
+      <div class="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-400">
+        <% @user.errors[:username].each do |msg| %>
+          <p>Username <%= msg %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, url: settings_path, method: :patch do |f| %>
+      <div class="mb-3">
+        <%= f.text_field :username,
+              value: @user.username,
+              autocomplete: "username",
+              maxlength: 20,
+              class: "w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 focus:border-neutral-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100" %>
+        <p class="mt-1 text-sm text-neutral-400">Max 20 characters</p>
+      </div>
+      <%= f.submit "Save username",
+            class: "rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-700 focus:outline-none dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 cursor-pointer" %>
+    <% end %>
+  </section>
+</div>
+</div>
