@@ -34,7 +34,7 @@
       <%# Posts that HAVE NOT passed %>
       <div class="w-full flex flex-col max-w-2xl gap-y-4">
         <% @posts.each do |post| %>
-          <% if Date.current <= post.event_date.to_date %>
+          <% if Date.current <= post.event_date.to_date%>
             <%= render post  %>
           <% end %>
         <% end %>
@@ -49,7 +49,7 @@
       <div class="w-full flex flex-col max-w-2xl gap-y-4">
         <% @posts.each do |post| %>
           <div class="w-full max-w-2xl">
-            <% if Date.current > post.event_date.to_date %>
+            <% if Date.current > post.event_date.to_date%>
               <%= render post  %>
             <% end %>
           </div>
