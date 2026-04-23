@@ -11,6 +11,8 @@ class PostsController < ApplicationController
     }
     order = sort_options[params[:sort]] || { updated_at: :desc }
     @posts = Post.order(order)
+    @upcoming = Post.where("event_date >= ?", Date.current)
+    @past = Post.where("event_date < ?", Date.current)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -54,7 +56,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1 or /posts/1.json
   def destroy
     if @post.organizer != current_user
-      redirect_to @post, alert: "You're not allowed to destroy other people's posts!" 
+      redirect_to @post, alert: "You're not allowed to destroy other people's posts!"
     else
       # https://stackoverflow.com/questions/16945958/proper-way-to-delete-has-many-through-join-records
       Requirement.where(id: @post.requirements).delete_all

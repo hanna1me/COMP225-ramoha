@@ -73,6 +73,10 @@
               </div>
               <%# Pfp info %>
               <div class="flex flex-col items-center text-center mb-4 shrink-0">
+                <h3 class="text-xl font-extrabold text-neutral-800 dark:text-neutral-100">
+                  <%# 20 char limit %>
+                  hi, <%= truncate(current_user&.username.downcase, length: 20, separator:'') %>!
+                </h3>
                 <div class="size-36 rounded-full mb-4 overflow-hidden">
                   <% if current_user&.avatar&.attached? %>
                     <%= image_tag current_user.avatar, alt: "Profile", class: "object-cover size-full" %>
@@ -82,10 +86,6 @@
                     </div>
                   <% end %>
                 </div>
-                <h3 class="text-xl font-extrabold text-neutral-800 dark:text-neutral-100">
-                  <%# 20 char limit %>
-                  hi, <%= truncate(current_user&.username.downcase, length: 20, separator:'') %>!
-                </h3>
               </div>
               <%# Navigation %>
               <aside class="flex flex-col gap-1 overflow-y-auto uppercase font-medium text-[var(--brand-black)]">

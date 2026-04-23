@@ -3,13 +3,13 @@
   <%= render 'layouts/notice' %>
   <header class="mb-4 text-center py-2">
     <h1 class="text-3xl !font-[Bricolage_Grotesque] text-[var(--brand-black)] font-extrabold dark:text-white tracking-tight">
-      looking for an <span class="font-light italic bg-[var(--brand-green)] px-1">upcoming event?</span>
+      looking for an <span class="font-light italic text-[var(--brand-black)] px-1 my-2">upcoming event?</span>
     </h1>
     <p class="text-[var(--post-details)] mt-2  font-medium italic">discover what's happening in your community!</p>
   </header>
-  <main id="posts" class="w-full flex flex-col items-center text-[var(--brand-orange)]">
+  <main id="posts" class="flex flex-col items-center text-[var(--brand-orange)]">
     <%# upcoming events %>
-    <div id="upcoming_events" class= "py-2">
+    <div id="upcoming_events" class="w-full max-w-2xl flex flex-col items-center">
       <%# Sort by %>
       <%= form_with url: posts_path, method: :get, class: "w-full max-w-2xl flex justify-end items-center gap-2 mb-4 text-[var(--grey-subtitle)]", data: { turbo_frame: "posts" } do |f| %>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -32,11 +32,9 @@
         </div>
       <% end %>
       <%# Posts that HAVE NOT passed %>
-      <div class="w-full flex flex-col max-w-2xl gap-y-4">
-        <% @posts.each do |post| %>
-          <% if Date.current <= post.event_date.to_date%>
-            <%= render post  %>
-          <% end %>
+      <div class="w-full max-w-2xl flex flex-col max-w-2xl gap-y-4">
+        <% @upcoming.each do |post| %>
+          <%= render post  %>
         <% end %>
       </div>
     </div>
@@ -46,13 +44,9 @@
         inspired by a <span class="font-light italic bg-[var(--brand-green)] px-1">past event?</span>
       </h2>
       <%# Posts that HAVE passed %>
-      <div class="w-full flex flex-col max-w-2xl gap-y-4">
-        <% @posts.each do |post| %>
-          <div class="w-full max-w-2xl">
-            <% if Date.current > post.event_date.to_date%>
-              <%= render post  %>
-            <% end %>
-          </div>
+      <div class="w-full max-w-2xl flex flex-col max-w-2xl gap-y-4">
+        <% @past.each do |post| %>
+          <%= render post  %>
         <% end %>
       </div>
     </div>
