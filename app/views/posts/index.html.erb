@@ -1,22 +1,18 @@
 <% content_for :title, "Home" %>
 <div class="max-w-5xl mx-auto w-full transition-all duration-300">
   <%= render 'layouts/notice' %>
-  <header class="mb-4 text-center py-2">
-    <h1 class="text-3xl !font-[Bricolage_Grotesque] text-[var(--brand-black)] font-extrabold dark:text-white tracking-tight">
-      looking for an <span class="font-light italic text-[var(--brand-black)] px-1 my-2">upcoming event?</span>
+  <header class="mb-10 flex flex-col items-center">
+    <h1 class="text-3xl !font-[Bricolage_Grotesque] text-[var(--typography-black)] font-extrabold dark:text-white tracking-tight">
+      looking for an <span class="font-extralight rounded-sm italic text-[var(--typography-black)] bg-[var(--highlighter-yellow)] px-2">upcoming event?</span>
     </h1>
-    <p class="text-[var(--post-details)] mt-2  font-medium italic">discover what's happening in your community!</p>
-  </header>
-  <main id="posts" class="flex flex-col items-center text-[var(--brand-orange)]">
-    <%# upcoming events %>
-    <div id="upcoming_events" class="w-full max-w-2xl flex flex-col items-center">
-      <%# Sort by %>
-      <%= form_with url: posts_path, method: :get, class: "w-full max-w-2xl flex justify-end items-center gap-2 mb-4 text-[var(--grey-subtitle)]", data: { turbo_frame: "posts" } do |f| %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-          <path fill-rule="evenodd" d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-5.818a1.5 1.5 0 0 0-.44-1.06L3.13 7.938a3 3 0 0 1-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836Z" clip-rule="evenodd" />
-        </svg>
-        <div class="w-full max-w-2xs">
-          <%= select_tag :sort,
+    <h2 class="text-lg !font-[Bricolage_Grotesque] text-[var(--typography-grey)] mt-2  font-medium">discover what's happening in your community!</h2>
+    <%# Sort by %>
+    <%= form_with url: posts_path, method: :get, class: "w-full max-w-2xl flex justify-end items-center mt-5 text-[var(--typography-black)]", data: { turbo_frame: "posts" } do |f| %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <path fill-rule="evenodd" d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-5.818a1.5 1.5 0 0 0-.44-1.06L3.13 7.938a3 3 0 0 1-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836Z" clip-rule="evenodd" />
+      </svg>
+      <div class="w-full max-w-2xs">
+        <%= select_tag :sort,
             options_for_select([
               ["Most recent posts first", "date_posted"],
               ["Earliest events first", "event_date"]
@@ -29,19 +25,24 @@
               select_dropdown_input_value: false, # Enable this to add a search input to the dropdown
               select_disable_typing_value: true
             } %>
-        </div>
-      <% end %>
+      </div>
+    <% end %>
+  </header>
+  <main id="posts" class="flex flex-col items-center text-[var(--action-orange)]">
+    <%# upcoming events %>
+    <div id="upcoming_events" class="w-full max-w-2xl flex flex-col items-center">
       <%# Posts that HAVE NOT passed %>
-      <div class="w-full max-w-2xl flex flex-col max-w-2xl gap-y-4">
+      <div class="w-full max-w-2xl flex flex-col max-w-2xl gap-y-5">
         <% @upcoming.each do |post| %>
           <%= render post  %>
         <% end %>
       </div>
     </div>
+    <!--
     <%# past events %>
     <div id= "past_events" class="py-2 mt-2">
-      <h2 class="text-3xl !font-[Bricolage_Grotesque] text-[var(--brand-black)] font-extrabold dark:text-white tracking-tight mb-4 text-center">
-        inspired by a <span class="font-light italic bg-[var(--brand-green)] px-1">past event?</span>
+      <h2 class="text-3xl !font-[Bricolage_Grotesque] text-[var(--typography-black)] font-extrabold dark:text-white tracking-tight mb-4 text-center">
+        inspired by a <span class="font-light italic bg-[var(--typography-grey)] px-1">past event?</span>
       </h2>
       <%# Posts that HAVE passed %>
       <div class="w-full max-w-2xl flex flex-col max-w-2xl gap-y-4">
@@ -50,5 +51,6 @@
         <% end %>
       </div>
     </div>
+    -->
   </main>
 </div>

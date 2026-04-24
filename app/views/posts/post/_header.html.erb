@@ -4,16 +4,15 @@
     <%# left of header %>
     <div class="flex items-center text-[var(--post-background)]">
       <% if post.organizer&.avatar&.attached? %>
-        <%= image_tag post.organizer.avatar, class: "h-10 w-10 rounded-full object-cover", alt: "Author" %>
+        <%= image_tag post.organizer.avatar, class: "h-12 w-12 rounded-full object-cover", alt: "Author" %>
       <% else %>
-        <div class="h-10 w-10 rounded-full bg-neutral-300 dark:bg-neutral-700 flex items-center justify-center text-sm font-bold text-neutral-600 dark:text-neutral-300">
+        <div class="h-12 w-12 rounded-full bg-neutral-300 dark:bg-neutral-700 flex items-center justify-center text-sm font-bold text-neutral-600 dark:text-neutral-300">
           <%= post.organizer&.username&.first&.upcase %>
         </div>
       <% end %>
       <div class="ml-3">
-        <p class="text-md font-medium text-[var(--brand-black)]">@<%=post.organizer.username%></p>
-        <p class="text-sm font-light text-[var(--brand-black)]">
-          <%# <%= local_time(post.updated_at, format: '%B %e, %Y, %l:%M %P') %>
+        <p class="!font-[Unbounded] text-sm font-medium text-[var(--typography-black)]">@<%=post.organizer.username%></p>
+        <p class="text-sm font-light text-[var(--typography-black)]">
           <%= post.updated_at.localtime.strftime('%B %e, %Y, %l:%M %P')%>
         </p>
       </div>
@@ -21,11 +20,11 @@
     <%# right of header %>
     <div class = "flex items-center gap-4">
       <%# Event countdown %>
-      <p class="bg-[var(--brand-blue)] italic font-light text-[var(--post-background)] text-lg px-4 py-1 justify-end rounded-full">
+      <p class="!font-[Unbounded] bg-[var(--brand-blue)] font-medium text-[var(--post-background)] text-md px-4 py-1 justify-end rounded-full">
         <%= event_countdown_text(post.event_date)%>
       </p>
       <%# Share button %>
-      <button type="button" class="text-[var(--brand-black)]" data-controller="clipboard"
+      <button type="button" class="text-[var(--typography-black)] hover:text-[var(--brand-blue)]" data-controller="clipboard"
             data-clipboard-text="<%= post_url(post) %>"
             data-clipboard-success-message-value="Post link copied!"
             data-clipboard-show-tooltip-value="true">

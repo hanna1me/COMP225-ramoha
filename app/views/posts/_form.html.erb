@@ -1,17 +1,96 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+ <%= form_with model: post, 
+    data: {
+      controller: "nested-form", 
+      nested_form_index_value: post.requirements.size,
+      nested_form_max_fields_value: 10, # limit to 10 requirements
+      nested_form_max_hint_text_value: "Whoa! 10 requirements is plenty!"
+    },
+    class: "w-3/4" do |form| %>
+  <%# title %>
+  <div class="mb-6 relative gap-y-1.5">
+    <%= form.label :event_title, "What are you hosting?" %>
+    <%= form.text_field :event_title, class: "form-control", placeholder: "Could this be the best event ever...?" %>
+  </div>
+  <%# location %>
+  <div class="mb-6 relative gap-y-1.5">
+    <%= form.label :location, "Where's it at?" %>
+    <%= form.text_field :location, class: "form-control", placeholder: "123 Awesome Lane..." %>
+  </div>
+  <%# date %>
+  <div class="mb-6 relative gap-y-1.5">
+    <%= form.label :event_date, "When is it?" %>
+    <%= form.date_field :event_date, class: "form-control" %>
+  </div>
+  <%# description %>
+  <div class="relative gap-y-1.5 h-full">
+    <%= form.label :description, "What's happening?" %>
+    <%= form.text_area :description, class: "form-control min-h-24", placeholder: "Tell us about your event..." %>
+  </div>
+  <%# Requirements %>
+  <div class="w-full flex flex-col space-y-3 mt-6">
+    <div class="items-center justify-center">
+      <h3 class="text-md font-regular text-neutral-900 dark:text-neutral-100">got any requirements?</h3>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
+    <div class="space-y-3" data-nested-form-target="container">
+      <%= form.fields_for :requirements do |req_form| %>
+        <div class="rounded-xl border border-neutral-200 bg-[var(--post-background)] p-4 dark:border-neutral-700 dark:bg-neutral-700/30 space-y-3" 
+               data-nested-form-target="item" 
+               data-new-record="false">
+          <%= req_form.hidden_field :_destroy %>
+          <div class="flex items-center justify-between gap-2">
+            <label class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Requirement</label>
+            <button type="button" 
+                      class="p-2 text-white bg-red-600 rounded-lg hover:bg-red-500 disabled:opacity-30 disabled:cursor-not-allowed" 
+                      data-action="nested-form#remove">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <%= req_form.text_area :req_description, 
+                class: "form-control min-h-20", 
+                placeholder: "Need chips? A couple of sodas?" %>
+        </div>
+      <% end %>
+    </div>
+    <%# adding new requirements%>
+    <template data-nested-form-target="template">
+      <%= form.fields_for :requirements, Requirement.new, child_index: "NEW_RECORD" do |req_form| %>
+        <div class="rounded-xl border border-neutral-200 bg-[var(--post-background)] p-4 dark:border-neutral-700 dark:bg-neutral-700/30 space-y-3" 
+               data-nested-form-target="item" 
+               data-new-record="true">
+          <div class="flex items-center justify-between gap-2">
+            <label class="text-xs font-semibold uppercase tracking-wider text-neutral-500">Requirement</label>
+            <button type="button" 
+                      class="p-2 text-white bg-red-600 rounded-lg hover:bg-red-500" 
+                      data-action="nested-form#remove">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <%= req_form.text_area :req_description, 
+                class: "form-control min-h-20", 
+                placeholder: "Add another requirement..." %>
+        </div>
+      <% end %>
+    </template>
+    <%# Add Button %>
+    <button type="button" 
+              class="flex w-full items-center justify-center gap-1.5 rounded-lg border border-black/10 bg-white/90 px-3.5 py-2 text-sm font-medium disabled:opacity-50 disabled:bg-neutral-100 dark:bg-neutral-800 dark:text-white" 
+              data-action="nested-form#add" 
+              data-nested-form-target="button">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Add Requirement
+    </button>
+    <p class="hidden text-xs text-red-500 text-center animate-pulse" 
+         data-nested-form-target="maxHint"></p>
+  </div>
+  <%# submit button %>
+  <div class="mt-6 flex justify-center w-full">
+    <%= form.submit "Create Event", class: "w-full rounded-lg bg-neutral-900 px-3.5 py-2 text-sm font-medium text-white transition-all hover:bg-neutral-700",
+    data: (post.persisted? ? { turbo_confirm: "Confirm changes? You can re-edit your event details later." } : {}) %>
   </div>
 <% end %>

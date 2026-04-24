@@ -4,9 +4,9 @@ module PostsHelper
     if days_until <=0
       "this event has passed!"
     elsif days_until > 30
-      "in 30+ days!"
+      "in 30+ days"
     else
-      "in #{pluralize(days_until, 'day')}!"
+      "in #{pluralize(days_until, 'day')}"
     end
   end
 

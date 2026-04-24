@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Unbounded:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Unbounded:wght@200..900&display=swap');
 @import "tailwindcss";
 
 kbd {
@@ -1266,17 +1266,19 @@ h1, h2, h3, h4, .heading-font {
 @layer base {
   :root {
   /* colors */  
-    --brand-blue: #00518D;
-    
-    /*new colors:*/
-    --brand-green: #E3B505;
-    --brand-orange: #F15152;
-    --brand-black: #221E22;
+    /* branding */
     --brand-blue: #3E78B2;
-    --main-background: #FFFFFF;
-    --post-background: #F4F2F1;
-    --post-details: #6B6B6B;
-    --grey-subtitle: #AFAAB9;
+    --highlighter-yellow: #EFDD8D;
+    /* action/status */
+    --action-orange: #EC4E20;
+    --action-red: #ED2F21;
+    /* typography */
+    --typography-black: #0F172A;
+    --typography-grey: #7E7F9A;
+    /* backgrounds */
+    --main-background: #FDFFFC;
+    --post-background: #f2f4f3;
+    
 
 
    
@@ -1285,6 +1287,7 @@ h1, h2, h3, h4, .heading-font {
     /* google fonts */
     --font-unbounded: 'Unbounded', sans-serif;
     --font-bricolage: 'Bricolage Grotesque', sans-serif;
+    --font-pixelify: 'Bitcount Single', sans-serif;
   }
 
   h1 {
@@ -1305,6 +1308,10 @@ h1, h2, h3, h4, .heading-font {
   p {
     @apply text-base leading-relaxed text-neutral-700 dark:text-neutral-300;
     font-family: var(--font-bricolage);
+  }
+
+  .pixel{
+    font-family: var(--font-pixelify);
   }
 }
 
