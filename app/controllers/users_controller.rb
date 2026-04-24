@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout "auth", only: [ :new, :create ]
   before_action :require_login, only: [ :edit, :update ]
+  helper_method :current_user
 
   def new
     @user = User.new
@@ -31,6 +32,10 @@ class UsersController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   private

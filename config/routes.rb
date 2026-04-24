@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  resources :interestedevents, only: [ :index ]
   root "posts#index"
-  resources :posts
+  resources :posts do
+    # interested button for posts
+    resources :interestedevents, only: [ :index, :create, :destroy ]
+  end
 
   get  "login",  to: "sessions#new",     as: :login
   post "login",  to: "sessions#create"
