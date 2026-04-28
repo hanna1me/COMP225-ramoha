@@ -6,26 +6,31 @@
       nested_form_max_hint_text_value: "Whoa! 10 requirements is plenty!"
     },
     class: "w-3/4" do |form| %>
+
   <%# title %>
   <div class="mb-6 relative gap-y-1.5">
     <%= form.label :event_title, "What are you hosting?" %>
     <%= form.text_field :event_title, class: "form-control", placeholder: "Could this be the best event ever...?" %>
   </div>
+
   <%# location %>
   <div class="mb-6 relative gap-y-1.5">
     <%= form.label :location, "Where's it at?" %>
     <%= form.text_field :location, class: "form-control", placeholder: "123 Awesome Lane..." %>
   </div>
+
   <%# date %>
   <div class="mb-6 relative gap-y-1.5">
     <%= form.label :event_date, "When is it?" %>
     <%= form.date_field :event_date, class: "form-control" %>
   </div>
+
   <%# description %>
   <div class="relative gap-y-1.5 h-full">
     <%= form.label :description, "What's happening?" %>
     <%= form.text_area :description, class: "form-control min-h-24", placeholder: "Tell us about your event..." %>
   </div>
+
   <%# Requirements %>
   <div class="w-full flex flex-col space-y-3 mt-6">
     <div class="items-center justify-center">

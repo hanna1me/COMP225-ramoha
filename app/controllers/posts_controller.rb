@@ -4,13 +4,14 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
-    sort_options = {
-      "event_date" => { event_date: :asc },
-      "date_posted" => { updated_at: :desc }
+    sort_orders = {
+      "date_posted" => { updated_at: :desc },
+      "event_date" => { event_date: :asc }
     }
-    order = sort_options[params[:sort]] || { updated_at: :desc }
-    @posts = Post.order(order)
+    sort_order_name = params[:sort] || "date_posted"
+    sort_order = sort_orders[sort_order_name]
+
+    @posts = Post.order(sort_order)
     @upcoming = Post.where("event_date >= ?", Date.current)
     @past = Post.where("event_date < ?", Date.current)
   end
