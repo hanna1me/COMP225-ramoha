@@ -12,8 +12,8 @@ class PostsController < ApplicationController
     sort_order = sort_orders[sort_order_name]
 
     @posts = Post.order(sort_order)
-    @upcoming = Post.where("event_date >= ?", Date.current)
-    @past = Post.where("event_date < ?", Date.current)
+    @upcoming = @posts.where("event_date >= ?", Date.current)
+    @past = @posts.where("event_date < ?", Date.current)
   end
 
   # GET /posts/1 or /posts/1.json
