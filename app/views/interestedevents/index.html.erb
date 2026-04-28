@@ -13,7 +13,7 @@
           class: events_tab(@tab, "created") %>
     </div>
     <%# Sort by %>
-    <%= form_with url: interestedevents_path, method: :get, class: "w-full max-w-2xl flex justify-end items-center gap-2 mb-4 text-[var(--typography-black)]", data: { turbo_frame: "posts" } do |f| %>
+    <%= form_with url: interestedevents_path, method: :get, class: "w-full max-w-2xl flex justify-end items-center gap-[var(--post-gap)] mb-4 text-[var(--typography-black)]", data: { turbo_frame: "posts" } do |f| %>
       <%# so sorting looks within the tab instead of the overall page %>
       <%= hidden_field_tag :tab, @tab %>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -41,7 +41,7 @@
           <%= render event %>
         <% end %>
       <% else %>
-        <div class="py-10 text-center border-2 border-dashed border-black/10 rounded-xl">
+        <div class="py-[var(--post-y-padding)] text-center border-2 border-dashed border-black/10 rounded-xl">
           <p class="text-neutral-500">You haven't 
             <%if @tab == "created"%>
               created

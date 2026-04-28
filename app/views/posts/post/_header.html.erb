@@ -1,5 +1,5 @@
 <%# Header %>
-<div class="px-6 py-4 bg-[var(--post-background)] font-[Unbounded] border-b border-black/10 dark:border-white/10">
+<div class="px-[var(--post-x-padding)] py-[var(--post-y-padding)] bg-[var(--post-background)] font-[Unbounded] border-b border-black/10 dark:border-white/10">
   <div class="flex items-center justify-between">
     <%# left of header %>
     <div class="flex items-center text-[var(--post-background)]">
@@ -20,7 +20,7 @@
     <%# right of header %>
     <div class = "flex items-center gap-4">
       <%# Event countdown %>
-      <p class="!font-[Unbounded] bg-[var(--brand-blue)] font-medium text-[var(--post-background)] text-md px-4 py-1 justify-end rounded-full">
+      <p class="!font-[Unbounded] bg-[var(--brand-blue)] font-medium text-[var(--post-background)] text-md px-[var(--post-x-padding)] py-1 justify-end rounded-full">
         <%= event_countdown_text(post.event_date)%>
       </p>
       <%# Share button %>

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     sort_order_name = params[:sort] || "date_posted"
     sort_order = sort_orders[sort_order_name]
 
-    @posts = Post.order(sort_order)
+    @posts = Post.includes(:interestedevents).order(sort_order)
     @upcoming = @posts.where("event_date >= ?", Date.current)
     @past = @posts.where("event_date < ?", Date.current)
   end

@@ -1266,18 +1266,29 @@ h1, h2, h3, h4, .heading-font {
 @layer base {
   :root {
   /* colors */  
+
     /* branding */
-    --brand-blue: #3E78B2;
-    --highlighter-yellow: #EFDD8D;
+    --brand-blue: #2d6eae;
+    --highlighter-yellow: #ead470;
+
     /* action/status */
     --action-orange: #EC4E20;
     --action-red: #ED2F21;
+
     /* typography */
     --typography-black: #0F172A;
     --typography-grey: #7E7F9A;
+
     /* backgrounds */
     --main-background: #FDFFFC;
     --post-background: #f2f4f3;
+
+    /* spacing */
+    --post-y-padding: 0.875rem;
+    --post-x-padding: 1.25rem;
+    --post-gap: 0.5rem;
+    --notice-margin: 1rem;
+
     
 
 

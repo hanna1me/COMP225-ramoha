@@ -1,11 +1,11 @@
 <% content_for :title, @post.event_title %>
-<div class="mt-8 max-w-2xl mx-auto w-full h-full px-4">
+<div class="max-w-2xl mx-auto w-full h-full px-[var(--post-x-padding)]">
   <%= render 'layouts/error' %>
   <%= render 'layouts/notice' %>
   <%# using posts as a partial to reduce the lines of code in each file, passing whether or not to show full details %>
   <%= render partial:'posts/post', locals: { post: @post, full_details: true } %>
-  <div class="mt-6">
-    <%= link_to posts_path, class: "flex items-center gap-2 text-neutral-500 hover:text-[var(--brand-blue)] transition-colors" do %>
+  <div class="my-[var(--post-x-padding)]">
+    <%= link_to posts_path, class: "flex items-center gap-[var(--post-gap)] text-neutral-500 hover:text-[var(--brand-blue)] transition-colors" do %>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
       </svg>

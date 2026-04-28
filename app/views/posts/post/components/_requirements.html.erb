@@ -1,0 +1,16 @@
+<% if @post.requirements.present? %>
+  <div class="w-full mx-auto mt-6">
+    <h3 class="text-lg font-extrabold !font-[Bricolage_Grotesque] mb-3 text-[var(--typography-black)]">
+      Event Requirements
+    </h3>
+    <div class="bg-white rounded-xl border border-black/10 shadow-xs overflow-hidden">
+      <ul class="divide-y divide-black/10">
+        <% @post.requirements.each do |requirement| %>
+          <li class="p-[var(--post-y-padding)] flex items-center gap-x-[var(--post-gap)] text-sm font-medium text-[var(--typography-black)]">
+            <%= requirement.req_description %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
