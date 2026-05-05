@@ -3,10 +3,10 @@
   <%= render 'layouts/error' %>
   <%= render 'layouts/notice' %>
   <% if flash[:alert] %>
-        <div class="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-400">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
+      <div class="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-400">
+        <%= flash[:alert] %>
+      </div>
+  <% end %>
   <%# using posts as a partial to reduce the lines of code in each file, passing whether or not to show full details %>
   <%= render partial:'posts/post', locals: { post: @post, full_details: true } %>
   <div class="my-[var(--post-x-padding)]">
