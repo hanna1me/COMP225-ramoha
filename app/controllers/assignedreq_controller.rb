@@ -1,4 +1,5 @@
 class AssignedreqController < ApplicationController
+  #This is for once we implement users signing up for requirements. For now, it is unused.
   def index
     @assignedreqs = Assignedreq.all
   end
