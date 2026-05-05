@@ -4,16 +4,23 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-test_event: 
+game_night: 
   organizer: john_doe
-  event_title: "Test Event"
-  location: "Test Location"
-  event_date: 31-12-2010
-  description: "Test Description"
+  event_title: "Game Night"
+  location: "Dupre Floor 4 Lounge"
+  event_date: 12-5-2026
+  description: "Finals are over, so let's play games together!"
 
-test_event_2: 
+study_session: 
   organizer: john_doe
-  event_title: "Test Event 2"
-  location: "Test Location"
-  event_date: 31-12-2026
-  description: "Test Description"
+  event_title: "Study Session"
+  location: "Library 2nd Floor"
+  event_date: 6-5-2026
+  description: "Study for finals together."
+
+dinner: 
+  organizer: jane_doe
+  event_title: "Dinner"
+  location: "Indochin, meet up at CC"
+  event_date: 11-5-2026
+  description: "Let's eat Vietnamese food to celebrate the end of the semester"

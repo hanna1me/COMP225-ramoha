@@ -3,19 +3,5 @@
 # This model initially had no columns defined. If you add columns to the
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
-tester_drinks: 
-  user: tester
-  requirement: req_drinks
 
-tester_2_snacks: 
-  user: tester_2
-  requirement: req_snacks
-
-tester_controllers:
-  user: tester
-  requirement: req_game_controllers
-
-tester_2_controllers:
-  user: tester_2
-  requirement: req_game_controllers
+#No fixtures as this is not implemented yet

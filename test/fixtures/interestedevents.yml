@@ -4,14 +4,10 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-tester_event_1: 
-  user: tester
-  post: test_event
+jane_game: 
+  user: jane_doe
+  post: game_night
 
-tester_event_2:
-  user: tester
-  post: test_event_2
-
-tester_2_event_2:
-  user: tester_2
-  post: test_event_2
+john_dinner: 
+  user: john_doe
+  post: dinner

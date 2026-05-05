@@ -1,13 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-req_drinks:
-  req_description: "We need drinks!"
-  post: test_event
+snacks_and_drinks:
+  req_description: "Any snacks or drinks"
+  post: game_night
 
-req_snacks:
-  req_description: "We need snacks!"
-  post: test_event_2
+game_controllers:
+  req_description: "Xbox and/or Switch controllers"
+  post: game_night
 
-req_game_controllers:
-  req_description: "Please bring xbox controllers!"
-  post: test_event_2
