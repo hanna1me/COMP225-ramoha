@@ -1,4 +1,6 @@
-<div class="max-w-5xl mx-auto w-full transition-all duration-300">
+<% content_for :title, "My Events" %>
+<div id="top" class="absolute top-0"></div>
+<div class="max-w-2xl mx-auto w-full transition-all duration-300">
   <header class="mb-4 text-center py-2">
     <h1 class="text-3xl !font-[Bricolage_Grotesque] text-[var(--typography-black)] font-extrabold dark:text-white tracking-tight">need to keep track of your events?</h1>
   </header>
@@ -12,15 +14,27 @@
           interestedevents_path(tab: "created", sort: params[:sort]), 
           class: events_tab(@tab, "created") %>
     </div>
-    <%# Sort by %>
-    <%= form_with url: interestedevents_path, method: :get, class: "w-full max-w-2xl flex justify-end items-center gap-[var(--post-gap)] mb-4 text-[var(--typography-grey)]", data: { turbo_frame: "posts" } do |f| %>
-      <%# so sorting looks within the tab instead of the overall page %>
-      <%= hidden_field_tag :tab, @tab %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-        <path fill-rule="evenodd" d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-5.818a1.5 1.5 0 0 0-.44-1.06L3.13 7.938a3 3 0 0 1-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836Z" clip-rule="evenodd" />
-      </svg>
-      <div class="w-full max-w-2xs">
-        <%= select_tag :sort,
+    <%# sticky sort bar %>
+    <div class="w-full sticky top-0 z-10 bg-[var(--main-background)]/80 backdrop-blur-xl py-4 border-b border-gray-100 mb-8" data-controller="scroll-top">
+      <%= form_with url: interestedevents_path, method: :get, class: "w-full max-w-2xl flex justify-between items-center gap-[var(--post-gap)] text-[var(--typography-grey)]", data: { turbo_frame: "posts" } do |f| %>
+        <%# back to top %>
+        <a href="#top" 
+   class="flex items-center  gap-2 text-xs font-bold uppercase tracking-widest text-[var(--typography-grey)] hover:text-[var(--brand-blue)]">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+          </svg>
+          Back to top
+        </a>
+        <%# sort container %>
+        <div class="flex items-center gap-2 group">
+          <%# so sorting looks within the tab instead of the overall page %>
+          <%= hidden_field_tag :tab, @tab %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-5.818a1.5 1.5 0 0 0-.44-1.06L3.13 7.938a3 3 0 0 1-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836Z" clip-rule="evenodd" />
+          </svg>
+          <%# form %>
+          <div class="w-2xs">
+            <%= select_tag :sort,
             options_for_select([
               ["Most recent posts first", "date_posted"],
               ["Earliest events first", "event_date"]
@@ -33,8 +47,11 @@
               select_dropdown_input_value: false, # Enable this to add a search input to the dropdown
               select_disable_typing_value: true
             } %>
-      </div>
-    <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%# events %>
     <div class="w-full flex flex-col max-w-2xl gap-y-4">
       <% if @events.any? %>
         <% @upcoming.each do |post| %>
