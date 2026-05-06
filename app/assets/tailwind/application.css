@@ -1324,6 +1324,10 @@ h1, h2, h3, h4, .heading-font {
   .pixel{
     font-family: var(--font-pixelify);
   }
+
+  html{
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {

@@ -1,0 +1,9 @@
+  <!-- Mobile Sidebar Overlay -->
+<div class="absolute inset-0 z-50 md:hidden hidden" data-sidebar-target="mobileSidebar">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/50 transition-opacity duration-300" data-sidebar-target="mobileBackdrop" data-action="click->sidebar#closeMobile"></div>
+  <!-- Sidebar Panel -->
+  <div class="absolute inset-y-0 left-0 bg-[var(--post-background)] dark:bg-neutral-900 shadow-xl border-r border-neutral-200 dark:border-neutral-800 transition-transform duration-300 ease-out" data-sidebar-target="mobilePanel">
+    <div data-sidebar-target="sharedContent"></div>
+  </div>
+</div>
