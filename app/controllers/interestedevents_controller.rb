@@ -38,6 +38,8 @@ class InterestedeventsController < ApplicationController
     else
       @events = current_user.posts.order(order)
     end
+    @upcoming = @events.where("event_date >= ?", Date.current)
+    @past = @events.where("event_date < ?", Date.current)
   end
 
   private
